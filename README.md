@@ -31,11 +31,41 @@ This is a web application that serves as both an **online store** and an **admin
 
 ## Tech Stack
 
-*To be decided*
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **Database:** Supabase (PostgreSQL)
+- **Auth:** Supabase Auth
+- **Storage:** Supabase Storage
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Hosting:** Vercel
 
 ## Getting Started
 
-*Setup instructions will be added once development begins.*
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/amren29/eventsolutions.git
+   cd eventsolutions
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+   Fill in your Supabase project URL and anon key.
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) for the store and [http://localhost:3000/admin](http://localhost:3000/admin) for the admin panel.
 
 ## License
 
