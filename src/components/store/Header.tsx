@@ -14,6 +14,9 @@ export default function Header({ active = "" }: { active?: string }) {
           <Link href="/" className={`text-sm ${active === "home" ? "font-medium text-primary" : "text-gray hover:text-primary"} transition-colors`}>
             Home
           </Link>
+          <Link href="/services" className={`text-sm ${active === "services" ? "font-medium text-primary" : "text-gray hover:text-primary"} transition-colors`}>
+            Services
+          </Link>
           <Link href="/products" className={`text-sm ${active === "products" ? "font-medium text-primary" : "text-gray hover:text-primary"} transition-colors`}>
             Products
           </Link>
