@@ -1,24 +1,13 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import Header from "@/components/store/Header";
+import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import { FadeIn, SlideIn } from "@/components/store/Animate";
 
 export default function ContactPage() {
   return (
     <main className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 flex items-center justify-between">
-          <div>
-            <a href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">Event Solutions</a>
-            <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
-          </div>
-          <nav className="flex items-center gap-6">
-            <a href="/" className="text-sm text-gray hover:text-primary transition-colors">Home</a>
-            <a href="/products" className="text-sm text-gray hover:text-primary transition-colors">Products</a>
-            <a href="/contact" className="text-sm font-medium text-primary">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <Header active="contact" />
 
       <div className="max-w-[1400px] mx-auto px-4 py-12">
         <FadeIn>
@@ -32,9 +21,9 @@ export default function ContactPage() {
             <div className="space-y-6">
               {[
                 { icon: MapPin, title: "Location", detail: "Kota Kinabalu, Sabah, Malaysia" },
-                { icon: Phone, title: "Phone", detail: "+60 12-345 6789" },
+                { icon: Phone, title: "Phone", detail: "+60 12 345 6789" },
                 { icon: Mail, title: "Email", detail: "hello@eventsolutions.my" },
-                { icon: Clock, title: "Working Hours", detail: "Mon – Sat, 9AM – 6PM" },
+                { icon: Clock, title: "Working Hours", detail: "Mon to Sat, 9AM to 6PM" },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 border border-border p-5">
                   <item.icon className="w-5 h-5 text-gray mt-0.5 shrink-0" />
@@ -75,7 +64,7 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium mb-1">Phone</label>
                     <input
                       type="tel"
-                      placeholder="+60 12-345 6789"
+                      placeholder="+60 12 345 6789"
                       className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary"
                     />
                   </div>
@@ -111,13 +100,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-12">
-        <div className="max-w-[1400px] mx-auto px-4 py-6 text-center text-sm text-gray">
-          © {new Date().getFullYear()} Event Solutions. Kota Kinabalu, Sabah.
-        </div>
-      </footer>
-
+      <Footer />
       <WhatsAppButton />
     </main>
   );

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Header from "@/components/store/Header";
+import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductCard from "@/components/store/ProductCard";
 import { products, categories } from "@/lib/data";
@@ -15,44 +17,33 @@ export default function ProductsPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 flex items-center justify-between">
-          <div>
-            <a href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">Event Solutions</a>
-            <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
-          </div>
-          <nav className="flex items-center gap-6">
-            <a href="/" className="text-sm text-gray hover:text-primary transition-colors">Home</a>
-            <a href="/products" className="text-sm font-medium text-primary">Products</a>
-            <a href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <Header active="products" />
 
       {/* Main Layout */}
       <div className="max-w-[1400px] mx-auto px-4 py-8 flex gap-8">
-        {/* Sidebar */}
+        {/* Sidebar - Fixed */}
         <aside className="w-48 shrink-0 hidden md:block">
-          <h2 className="text-xs font-semibold text-gray uppercase tracking-wide mb-4">
-            Categories
-          </h2>
-          <ul className="space-y-1">
-            {categories.map((cat) => (
-              <li key={cat}>
-                <button
-                  onClick={() => setActive(cat)}
-                  className={`w-full text-left px-3 py-2 text-sm transition-colors ${
-                    cat === active
-                      ? "bg-primary text-white font-medium"
-                      : "text-gray hover:text-primary hover:bg-gray-light"
-                  }`}
-                >
-                  {cat}
-                </button>
-              </li>
-            ))}
-          </ul>
+          <div className="sticky top-8">
+            <h2 className="text-xs font-semibold text-gray uppercase tracking-wide mb-4">
+              Categories
+            </h2>
+            <ul className="space-y-1">
+              {categories.map((cat) => (
+                <li key={cat}>
+                  <button
+                    onClick={() => setActive(cat)}
+                    className={`w-full text-left px-3 py-2 text-sm transition-colors ${
+                      cat === active
+                        ? "bg-primary text-white font-medium"
+                        : "text-gray hover:text-primary hover:bg-gray-light"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </aside>
 
         {/* Products */}
@@ -110,13 +101,7 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-6 text-center text-sm text-gray">
-          © {new Date().getFullYear()} Event Solutions. Kota Kinabalu, Sabah.
-        </div>
-      </footer>
-
+      <Footer />
       <WhatsAppButton />
     </main>
   );

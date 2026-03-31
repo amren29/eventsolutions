@@ -1,7 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { products } from "@/lib/data";
+import Header from "@/components/store/Header";
+import Footer from "@/components/store/Footer";
 import ProductCard from "@/components/store/ProductCard";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import { FadeIn, SlideIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
@@ -30,20 +32,7 @@ export default async function ProductDetail({
 
   return (
     <main className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 flex items-center justify-between">
-          <div>
-            <Link href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">Event Solutions</Link>
-            <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
-          </div>
-          <nav className="flex items-center gap-6">
-            <a href="/" className="text-sm text-gray hover:text-primary transition-colors">Home</a>
-            <a href="/products" className="text-sm text-gray hover:text-primary transition-colors">Products</a>
-            <a href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <Header active="products" />
 
       {/* Breadcrumb */}
       <div className="border-b border-border">
@@ -151,13 +140,7 @@ export default async function ProductDetail({
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-6 text-center text-sm text-gray">
-          © {new Date().getFullYear()} Event Solutions. Kota Kinabalu, Sabah.
-        </div>
-      </footer>
-
+      <Footer />
       <WhatsAppButton />
     </main>
   );

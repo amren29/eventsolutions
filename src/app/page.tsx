@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Header from "@/components/store/Header";
+import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductCard from "@/components/store/ProductCard";
-import { FadeIn, FadeInView, SlideIn, StaggerContainer, StaggerItem } from "@/components/store/Animate";
+import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
 import { products, services } from "@/lib/data";
 
 const featuredProducts = products.slice(0, 15);
@@ -9,33 +11,20 @@ const featuredProducts = products.slice(0, 15);
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Header */}
-      <header className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold leading-tight">Event Solutions</h1>
-            <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
-          </div>
-          <nav className="flex items-center gap-6">
-            <a href="/" className="text-sm font-medium text-primary">Home</a>
-            <a href="/products" className="text-sm text-gray hover:text-primary transition-colors">Products</a>
-            <a href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</a>
-          </nav>
-        </div>
-      </header>
+      <Header active="home" />
 
-      {/* Hero - About Us */}
+      {/* Hero */}
       <section className="border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <FadeIn>
               <h2 className="text-3xl font-bold leading-tight">
-                Your One-Stop Event Partner in Kota Kinabalu
+                Your One Stop Event Partner in Kota Kinabalu
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-gray mt-4 leading-relaxed">
-                Event Solutions is a full-service event company based in Kota Kinabalu, Sabah. We supply everything you need — from tents, tables, and chairs to lighting, sound systems, stage setups, and complete event decoration. Whether it&apos;s a wedding, corporate dinner, birthday, or any celebration, we handle it all so you don&apos;t have to.
+                Event Solutions is a full service event company based in Kota Kinabalu, Sabah. We supply everything you need, from tents, tables, and chairs to lighting, sound systems, stage setups, and complete event decoration. Whether it&apos;s a wedding, corporate dinner, birthday, or any celebration, we handle it all so you don&apos;t have to.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -131,40 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <p className="font-bold">Event Solutions</p>
-              <p className="text-sm text-gray mt-2 max-w-md">
-                Your one-stop event company in Kota Kinabalu. From supplies to full event management, we make your events unforgettable.
-              </p>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray uppercase tracking-wide mb-3">Quick Links</p>
-              <ul className="space-y-2">
-                <li><a href="/" className="text-sm text-gray hover:text-primary transition-colors">Home</a></li>
-                <li><a href="/products" className="text-sm text-gray hover:text-primary transition-colors">Products</a></li>
-                <li><a href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-gray uppercase tracking-wide mb-3">Contact</p>
-              <ul className="space-y-2 text-sm text-gray">
-                <li>Kota Kinabalu, Sabah</li>
-                <li>+60 12-345 6789</li>
-                <li>hello@eventsolutions.my</li>
-                <li>Mon – Sat, 9AM – 6PM</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border mt-8 pt-6 text-center text-sm text-gray">
-            © {new Date().getFullYear()} Event Solutions. All rights reserved.
-          </div>
-        </div>
-      </footer>
-
+      <Footer />
       <WhatsAppButton />
     </main>
   );
