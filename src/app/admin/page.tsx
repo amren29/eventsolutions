@@ -1,92 +1,45 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Package, FolderOpen, Eye, TrendingUp } from "lucide-react";
-
-const stats = [
-  {
-    title: "Total Products",
-    value: "0",
-    icon: Package,
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    title: "Categories",
-    value: "0",
-    icon: FolderOpen,
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    title: "Page Views",
-    value: "0",
-    icon: Eye,
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    title: "Inquiries",
-    value: "0",
-    icon: TrendingUp,
-    color: "from-emerald-500 to-teal-500",
-  },
-];
+import { Package, FolderOpen } from "lucide-react";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-dark">Dashboard</h1>
-        <p className="text-gray mt-1">Welcome to Event Solutions admin panel.</p>
+      <h1 className="text-xl font-bold mb-1">Dashboard</h1>
+      <p className="text-sm text-gray mb-8">Welcome to Event Solutions admin.</p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div className="bg-white border border-border  p-6">
+          <Package className="w-5 h-5 text-gray mb-3" />
+          <p className="text-2xl font-bold">0</p>
+          <p className="text-sm text-gray">Products</p>
+        </div>
+        <div className="bg-white border border-border  p-6">
+          <FolderOpen className="w-5 h-5 text-gray mb-3" />
+          <p className="text-2xl font-bold">0</p>
+          <p className="text-sm text-gray">Categories</p>
+        </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {stats.map((stat, i) => (
-          <motion.div
-            key={stat.title}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all"
-          >
-            <div className="flex items-center justify-between mb-4">
-              <div
-                className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}
-              >
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <div className="text-3xl font-bold text-dark">{stat.value}</div>
-            <div className="text-sm text-gray mt-1">{stat.title}</div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Quick Actions */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="bg-white rounded-2xl p-8 border border-slate-100"
-      >
-        <h2 className="text-lg font-bold text-dark mb-4">Quick Start</h2>
-        <p className="text-gray text-sm mb-6">
-          Get started by adding your product categories, then add products to your store.
+      <div className="bg-white border border-border  p-6">
+        <h2 className="font-semibold mb-2">Quick Start</h2>
+        <p className="text-sm text-gray mb-4">
+          Add categories first, then add products.
         </p>
-        <div className="flex gap-4">
-          <a
+        <div className="flex gap-3">
+          <Link
             href="/admin/categories"
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white text-sm font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all"
+            className="px-4 py-2 bg-primary text-white text-sm font-medium  hover:bg-primary/90 transition-colors"
           >
             Add Categories
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/products"
-            className="px-6 py-3 rounded-xl border-2 border-slate-200 text-dark text-sm font-semibold hover:border-primary hover:text-primary transition-all"
+            className="px-4 py-2 border border-border text-sm font-medium  hover:border-primary/30 transition-colors"
           >
             Add Products
-          </a>
+          </Link>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -2,13 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  Package,
-  FolderOpen,
-  ArrowLeft,
-  Sparkles,
-} from "lucide-react";
+import { LayoutDashboard, Package, FolderOpen, ArrowLeft } from "lucide-react";
 
 const sidebarLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -24,57 +18,46 @@ export default function AdminLayout({
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-gray-light flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-dark text-white flex flex-col fixed inset-y-0 left-0 z-50">
-        {/* Logo */}
-        <div className="p-6 border-b border-slate-700/50">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <span className="font-bold text-sm">EventSolutions</span>
-              <span className="block text-xs text-slate-400">Admin Panel</span>
-            </div>
-          </div>
+      <aside className="w-60 bg-white border-r border-border flex flex-col fixed inset-y-0 left-0">
+        <div className="p-5 border-b border-border">
+          <p className="font-bold text-sm">Event Solutions</p>
+          <p className="text-xs text-gray">Admin Panel</p>
         </div>
 
-        {/* Nav Links */}
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-3 space-y-1">
           {sidebarLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-3 px-3 py-2.5  text-sm transition-colors ${
                   isActive
-                    ? "bg-primary text-white shadow-lg shadow-primary/25"
-                    : "text-slate-400 hover:text-white hover:bg-slate-700/50"
+                    ? "bg-primary text-white font-medium"
+                    : "text-gray hover:text-primary hover:bg-gray-light"
                 }`}
               >
-                <link.icon className="w-5 h-5" />
+                <link.icon className="w-4 h-4" />
                 {link.label}
               </Link>
             );
           })}
         </nav>
 
-        {/* Back to Store */}
-        <div className="p-4 border-t border-slate-700/50">
+        <div className="p-3 border-t border-border">
           <Link
             href="/"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-700/50 transition-all"
+            className="flex items-center gap-3 px-3 py-2.5  text-sm text-gray hover:text-primary hover:bg-gray-light transition-colors"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
             Back to Store
           </Link>
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 ml-64 p-8">{children}</main>
+      <main className="flex-1 ml-60 p-8">{children}</main>
     </div>
   );
 }

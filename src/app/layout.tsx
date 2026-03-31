@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Event Solutions | Event Supplies & Management in KK",
   description:
-    "Your one-stop event company in Kota Kinabalu. We provide event supplies, equipment rental, decoration, and full event management services.",
+    "Event supplies, equipment rental, and full event management in Kota Kinabalu.",
 };
 
 export default function RootLayout({
@@ -16,11 +16,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-white text-primary">{children}</body>
     </html>
   );
 }

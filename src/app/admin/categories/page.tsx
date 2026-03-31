@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Pencil, Trash2, X, FolderOpen } from "lucide-react";
 
 interface Category {
@@ -40,163 +39,116 @@ export default function AdminCategories() {
     setShowForm(true);
   };
 
-  const handleDelete = (id: number) => {
-    setCategories((prev) => prev.filter((c) => c.id !== id));
-  };
-
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-dark">Categories</h1>
-          <p className="text-gray mt-1">Organize your products by category.</p>
+          <h1 className="text-xl font-bold">Categories</h1>
+          <p className="text-sm text-gray mt-1">Organize your products.</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white text-sm font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium  hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Category
         </button>
       </div>
 
-      {/* Category Form Modal */}
-      <AnimatePresence>
-        {showForm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-dark">
-                  {editingId ? "Edit Category" : "Add New Category"}
-                </h2>
+      {/* Modal */}
+      {showForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="bg-white  p-6 w-full max-w-md shadow-xl">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="font-bold">
+                {editingId ? "Edit Category" : "Add Category"}
+              </h2>
+              <button onClick={resetForm} className="p-1 hover:bg-gray-light ">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Name</label>
+                <input
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className="w-full px-3 py-2 border border-border  text-sm focus:outline-none focus:border-primary"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Description</label>
+                <textarea
+                  rows={3}
+                  value={form.description}
+                  onChange={(e) => setForm({ ...form, description: e.target.value })}
+                  className="w-full px-3 py-2 border border-border  text-sm focus:outline-none focus:border-primary resize-none"
+                />
+              </div>
+              <div className="flex gap-3 pt-2">
                 <button
+                  type="button"
                   onClick={resetForm}
-                  className="p-2 rounded-xl hover:bg-slate-100 transition-colors"
+                  className="flex-1 px-4 py-2 border border-border text-sm font-medium  hover:bg-gray-light transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium  hover:bg-primary/90 transition-colors"
+                >
+                  {editingId ? "Update" : "Add"}
                 </button>
               </div>
+            </form>
+          </div>
+        </div>
+      )}
 
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium text-dark mb-2">
-                    Category Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="e.g. Tents, Lighting, Audio"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-dark mb-2">
-                    Description
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={form.description}
-                    onChange={(e) =>
-                      setForm({ ...form, description: e.target.value })
-                    }
-                    placeholder="Brief description..."
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                  />
-                </div>
-                <div className="flex gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="flex-1 px-6 py-3 rounded-xl border-2 border-slate-200 text-dark text-sm font-semibold hover:bg-slate-50 transition-all"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white text-sm font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all"
-                  >
-                    {editingId ? "Update" : "Add Category"}
-                  </button>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Category List */}
+      {/* List */}
       {categories.length === 0 ? (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="bg-white rounded-2xl border border-slate-100 p-16 text-center"
-        >
-          <FolderOpen className="w-16 h-16 text-slate-200 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-dark mb-2">
-            No categories yet
-          </h3>
-          <p className="text-gray text-sm mb-6">
-            Create categories to organize your products.
-          </p>
+        <div className="bg-white border border-border  p-12 text-center">
+          <FolderOpen className="w-10 h-10 text-border mx-auto mb-3" />
+          <p className="font-medium mb-1">No categories yet</p>
+          <p className="text-sm text-gray mb-4">Create your first category.</p>
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white text-sm font-semibold hover:shadow-lg hover:shadow-primary/25 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium "
           >
             <Plus className="w-4 h-4" />
-            Add First Category
+            Add Category
           </button>
-        </motion.div>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((category) => (
-            <motion.div
+            <div
               key={category.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-lg transition-all"
+              className="bg-white border border-border  p-5"
             >
               <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <FolderOpen className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-dark">{category.name}</h3>
-                    {category.description && (
-                      <p className="text-sm text-gray mt-1">
-                        {category.description}
-                      </p>
-                    )}
-                  </div>
+                <div>
+                  <h3 className="font-medium">{category.name}</h3>
+                  {category.description && (
+                    <p className="text-sm text-gray mt-1">{category.description}</p>
+                  )}
                 </div>
                 <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => handleEdit(category)}
-                    className="p-2 rounded-lg hover:bg-blue-50 text-blue-500 transition-colors"
-                  >
-                    <Pencil className="w-4 h-4" />
+                  <button onClick={() => handleEdit(category)} className="p-1.5  hover:bg-gray-light">
+                    <Pencil className="w-4 h-4 text-gray" />
                   </button>
                   <button
-                    onClick={() => handleDelete(category.id)}
-                    className="p-2 rounded-lg hover:bg-red-50 text-red-500 transition-colors"
+                    onClick={() => setCategories((prev) => prev.filter((c) => c.id !== category.id))}
+                    className="p-1.5  hover:bg-red-50"
                   >
-                    <Trash2 className="w-4 h-4" />
+                    <Trash2 className="w-4 h-4 text-red-500" />
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}
