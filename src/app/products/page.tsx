@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductCard from "@/components/store/ProductCard";
 import { products, categories } from "@/lib/data";
@@ -32,9 +33,9 @@ export default function ProductsPage() {
         </div>
       </header>
 
-      {/* Main Layout: Sidebar + Products */}
+      {/* Main Layout */}
       <div className="max-w-[1400px] mx-auto px-4 py-8 flex gap-8">
-        {/* Sidebar Categories */}
+        {/* Sidebar */}
         <aside className="w-48 shrink-0 hidden md:block">
           <h2 className="text-xs font-semibold text-gray uppercase tracking-wide mb-4">
             Categories
@@ -57,16 +58,21 @@ export default function ProductsPage() {
           </ul>
         </aside>
 
-        {/* Products Grid */}
+        {/* Products */}
         <div className="flex-1">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xs font-semibold text-gray uppercase tracking-wide">
+            <motion.h2
+              key={active}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xs font-semibold text-gray uppercase tracking-wide"
+            >
               {active === "All" ? "All Products" : active}
-            </h2>
+            </motion.h2>
             <p className="text-xs text-gray">{filtered.length} products</p>
           </div>
 
-          {/* Mobile Category Filter */}
+          {/* Mobile Filter */}
           <div className="flex gap-2 overflow-x-auto pb-4 mb-4 md:hidden">
             {categories.map((cat) => (
               <button
@@ -83,11 +89,27 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {filtered.map((product) => (
-              <ProductCard key={product.name} {...product} />
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
+            >
+              {filtered.map((product, i) => (
+                <motion.div
+                  key={product.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                >
+                  <ProductCard {...product} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
