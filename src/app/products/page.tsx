@@ -17,12 +17,12 @@ export default function ProductsPage() {
     <main className="min-h-screen">
       {/* Header */}
       <header className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-5 flex flex-col items-center text-center">
-          <a href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">
-            Event Solutions
-          </a>
-          <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
-          <nav className="flex items-center gap-6 mt-3">
+        <div className="max-w-[1400px] mx-auto px-4 py-5 flex items-center justify-between">
+          <div>
+            <a href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">Event Solutions</a>
+            <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
+          </div>
+          <nav className="flex items-center gap-6">
             <a href="/" className="text-sm text-gray hover:text-primary transition-colors">Home</a>
             <a href="/products" className="text-sm font-medium text-primary">Products</a>
             <a href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</a>
