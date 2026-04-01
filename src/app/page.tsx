@@ -28,7 +28,7 @@ export default async function Home() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-gray mt-4 leading-relaxed">
-                Based in Kota Kinabalu &amp; Tuaran, we handle everything from setup to styling so you don&apos;t have to. Available for events throughout Sabah.
+                Based in Sabah, specifically in Kota Kinabalu &amp; Tuaran, we provide complete event solutions from setup to styling so you can focus on enjoying your event. From tents, tables, and seating to lighting, sound systems, staging, and full event decoration, we handle every detail with care and precision. Whether you&apos;re planning a wedding, corporate function, private party, or a large-scale celebration, our experienced team ensures a seamless and stress-free experience from start to finish. Proudly serving Kota Kinabalu, Tuaran, and clients across Sabah.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
