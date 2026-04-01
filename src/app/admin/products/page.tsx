@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Plus, Pencil, Trash2, X, Package, Loader2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Plus, Pencil, Trash2, X, Package, Loader2, Upload, Download, FileSpreadsheet, Image as ImageIcon } from "lucide-react";
 import { supabase, isSupabaseConfigured, DBProduct } from "@/lib/supabase";
+import * as XLSX from "xlsx";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState<DBProduct[]>([]);
@@ -11,6 +12,11 @@ export default function AdminProducts() {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [imagePreview, setImagePreview] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const excelInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState({
     name: "",
     slug: "",
@@ -48,10 +54,39 @@ export default function AdminProducts() {
     setForm({ name: "", slug: "", subtitle: "", category: "", price: "", description: "", image_url: "", includes: "" });
     setEditingId(null);
     setShowForm(false);
+    setImagePreview("");
   };
 
   const generateSlug = (name: string) =>
     name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+  // Image upload
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const ext = file.name.split(".").pop();
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("product-images")
+      .upload(fileName, file);
+
+    if (uploadError) {
+      alert("Upload failed: " + uploadError.message);
+      setUploading(false);
+      return;
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("product-images")
+      .getPublicUrl(fileName);
+
+    setForm((prev) => ({ ...prev, image_url: urlData.publicUrl }));
+    setImagePreview(urlData.publicUrl);
+    setUploading(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,13 +125,76 @@ export default function AdminProducts() {
       image_url: product.image_url,
       includes: (product.includes || []).join("\n"),
     });
+    setImagePreview(product.image_url);
     setEditingId(product.id);
     setShowForm(true);
   };
 
   const handleDelete = async (id: number) => {
+    if (!confirm("Delete this product?")) return;
     await supabase.from("products").delete().eq("id", id);
     fetchProducts();
+  };
+
+  // Excel export
+  const handleExport = () => {
+    const exportData = products.map((p) => ({
+      Name: p.name,
+      Slug: p.slug,
+      Category: p.category,
+      Price: p.price,
+      Subtitle: p.subtitle,
+      Description: p.description,
+      "Image URL": p.image_url,
+      Includes: (p.includes || []).join("; "),
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Products");
+    XLSX.writeFile(wb, "products.xlsx");
+  };
+
+  // Excel import
+  const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setImporting(true);
+
+    const data = await file.arrayBuffer();
+    const wb = XLSX.read(data);
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json<Record<string, string | number>>(ws);
+
+    const productsToInsert = rows.map((row) => ({
+      name: String(row["Name"] || ""),
+      slug: String(row["Slug"] || "") || generateSlug(String(row["Name"] || "")),
+      category: String(row["Category"] || ""),
+      price: parseFloat(String(row["Price"] || "0")),
+      subtitle: String(row["Subtitle"] || ""),
+      description: String(row["Description"] || ""),
+      image_url: String(row["Image URL"] || ""),
+      includes: String(row["Includes"] || "").split(";").map((s) => s.trim()).filter(Boolean),
+    })).filter((p) => p.name);
+
+    if (productsToInsert.length === 0) {
+      alert("No valid products found in file.");
+      setImporting(false);
+      return;
+    }
+
+    const { error: insertError } = await supabase.from("products").insert(productsToInsert);
+
+    if (insertError) {
+      alert("Import failed: " + insertError.message);
+    } else {
+      alert(`Imported ${productsToInsert.length} products.`);
+      fetchProducts();
+    }
+
+    setImporting(false);
+    if (excelInputRef.current) excelInputRef.current.value = "";
   };
 
   if (loading) {
@@ -122,13 +220,43 @@ export default function AdminProducts() {
           <h1 className="text-xl font-bold">Products</h1>
           <p className="text-sm text-gray mt-1">Manage your product catalog.</p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          Add Product
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Excel Import */}
+          <input
+            ref={excelInputRef}
+            type="file"
+            accept=".xlsx,.xls"
+            onChange={handleImport}
+            className="hidden"
+          />
+          <button
+            onClick={() => excelInputRef.current?.click()}
+            disabled={importing}
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
+          >
+            {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+            Import
+          </button>
+
+          {/* Excel Export */}
+          <button
+            onClick={handleExport}
+            disabled={products.length === 0}
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
+          >
+            <Download className="w-4 h-4" />
+            Export
+          </button>
+
+          {/* Add Product */}
+          <button
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Add Product
+          </button>
+        </div>
       </div>
 
       {/* Modal */}
@@ -207,16 +335,73 @@ export default function AdminProducts() {
                   className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary resize-none"
                 />
               </div>
+
+              {/* Image Upload */}
               <div>
-                <label className="block text-sm font-medium mb-1">Image URL</label>
+                <label className="block text-sm font-medium mb-1">Product Image</label>
                 <input
-                  type="text"
-                  value={form.image_url}
-                  onChange={(e) => setForm({ ...form, image_url: e.target.value })}
-                  placeholder="https://..."
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
                 />
+
+                {(imagePreview || form.image_url) ? (
+                  <div className="relative border border-border p-2">
+                    <img
+                      src={imagePreview || form.image_url}
+                      alt="Preview"
+                      className="w-full h-40 object-cover"
+                    />
+                    <div className="flex gap-2 mt-2">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploading}
+                        className="flex-1 px-3 py-1.5 border border-border text-xs font-medium hover:bg-gray-light transition-colors"
+                      >
+                        {uploading ? "Uploading..." : "Change Image"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => { setForm({ ...form, image_url: "" }); setImagePreview(""); }}
+                        className="px-3 py-1.5 border border-border text-xs font-medium text-red-500 hover:bg-red-50 transition-colors"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={uploading}
+                    className="w-full border-2 border-dashed border-border py-8 flex flex-col items-center gap-2 hover:border-primary/30 transition-colors"
+                  >
+                    {uploading ? (
+                      <Loader2 className="w-6 h-6 animate-spin text-gray" />
+                    ) : (
+                      <ImageIcon className="w-6 h-6 text-gray" />
+                    )}
+                    <span className="text-sm text-gray">
+                      {uploading ? "Uploading..." : "Click to upload image"}
+                    </span>
+                  </button>
+                )}
+
+                {/* Or paste URL */}
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={form.image_url}
+                    onChange={(e) => { setForm({ ...form, image_url: e.target.value }); setImagePreview(e.target.value); }}
+                    placeholder="Or paste image URL..."
+                    className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                  />
+                </div>
               </div>
+
               <div>
                 <label className="block text-sm font-medium mb-1">Includes (one per line)</label>
                 <textarea
@@ -253,20 +438,30 @@ export default function AdminProducts() {
         <div className="bg-white border border-border p-12 text-center">
           <Package className="w-10 h-10 text-border mx-auto mb-3" />
           <p className="font-medium mb-1">No products yet</p>
-          <p className="text-sm text-gray mb-4">Add your first product.</p>
-          <button
-            onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium"
-          >
-            <Plus className="w-4 h-4" />
-            Add Product
-          </button>
+          <p className="text-sm text-gray mb-4">Add your first product or import from Excel.</p>
+          <div className="flex justify-center gap-3">
+            <button
+              onClick={() => setShowForm(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium"
+            >
+              <Plus className="w-4 h-4" />
+              Add Product
+            </button>
+            <button
+              onClick={() => excelInputRef.current?.click()}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-border text-sm font-medium hover:bg-gray-light"
+            >
+              <FileSpreadsheet className="w-4 h-4" />
+              Import Excel
+            </button>
+          </div>
         </div>
       ) : (
         <div className="bg-white border border-border overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border text-left">
+                <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Image</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Product</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Category</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Price</th>
@@ -276,6 +471,15 @@ export default function AdminProducts() {
             <tbody>
               {products.map((product) => (
                 <tr key={product.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+                  <td className="px-5 py-3">
+                    {product.image_url ? (
+                      <img src={product.image_url} alt="" className="w-12 h-12 object-cover border border-border" />
+                    ) : (
+                      <div className="w-12 h-12 bg-gray-light flex items-center justify-center border border-border">
+                        <ImageIcon className="w-4 h-4 text-gray" />
+                      </div>
+                    )}
+                  </td>
                   <td className="px-5 py-3">
                     <p className="font-medium text-sm">{product.name}</p>
                     <p className="text-xs text-gray mt-0.5">{product.subtitle}</p>
