@@ -1,7 +1,8 @@
-import { supabase } from "./supabase";
+import { supabase, isSupabaseConfigured } from "./supabase";
 import { products as staticProducts, Product } from "./data";
 
 export async function getProducts(): Promise<Product[]> {
+  if (!isSupabaseConfigured) return staticProducts;
   try {
     const { data, error } = await supabase
       .from("products")
@@ -28,6 +29,9 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  if (!isSupabaseConfigured) {
+    return staticProducts.find((p) => p.slug === slug) || null;
+  }
   try {
     const { data, error } = await supabase
       .from("products")
@@ -57,6 +61,9 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 }
 
 export async function getCategories(): Promise<string[]> {
+  if (!isSupabaseConfigured) {
+    return [...new Set(staticProducts.map((p) => p.category))];
+  }
   try {
     const { data, error } = await supabase
       .from("products")
