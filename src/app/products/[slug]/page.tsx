@@ -8,7 +8,7 @@ import WhatsAppButton from "@/components/store/WhatsAppButton";
 import { FadeIn, SlideIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
 import { getProductBySlug, getProducts } from "@/lib/getProducts";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function ProductDetail({
   params,

@@ -4,7 +4,7 @@ import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductsGrid from "@/components/store/ProductsGrid";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function ProductsPage() {
   const products = await getProducts();

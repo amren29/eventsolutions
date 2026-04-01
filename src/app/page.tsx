@@ -7,7 +7,7 @@ import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/
 import { services } from "@/lib/data";
 import { getProducts } from "@/lib/getProducts";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const products = await getProducts();
