@@ -1,18 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { products } from "@/lib/data";
 import Header from "@/components/store/Header";
 import Footer from "@/components/store/Footer";
 import ProductCard from "@/components/store/ProductCard";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import { FadeIn, SlideIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
+import { getProductBySlug, getProducts } from "@/lib/getProducts";
 
-export function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
-}
+export const revalidate = 60;
 
 export default async function ProductDetail({
   params,
@@ -20,13 +16,14 @@ export default async function ProductDetail({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = products.find((p) => p.slug === slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const related = products
+  const allProducts = await getProducts();
+  const related = allProducts
     .filter((p) => p.category === product.category && p.slug !== product.slug)
     .slice(0, 5);
 
@@ -83,19 +80,21 @@ export default async function ProductDetail({
             </FadeIn>
 
             {/* What's Included */}
-            <FadeIn delay={0.4}>
-              <div className="mt-8">
-                <h3 className="text-sm font-semibold uppercase tracking-wide mb-4">What&apos;s Included</h3>
-                <ul className="space-y-2">
-                  {product.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-gray">
-                      <span className="w-1.5 h-1.5 bg-primary mt-1.5 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </FadeIn>
+            {product.includes && product.includes.length > 0 && (
+              <FadeIn delay={0.4}>
+                <div className="mt-8">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide mb-4">What&apos;s Included</h3>
+                  <ul className="space-y-2">
+                    {product.includes.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-gray">
+                        <span className="w-1.5 h-1.5 bg-primary mt-1.5 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+            )}
 
             {/* CTA */}
             <FadeIn delay={0.5}>

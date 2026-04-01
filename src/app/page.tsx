@@ -4,11 +4,15 @@ import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductCard from "@/components/store/ProductCard";
 import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
-import { products, services } from "@/lib/data";
+import { services } from "@/lib/data";
+import { getProducts } from "@/lib/getProducts";
 
-const featuredProducts = products.slice(0, 15);
+export const revalidate = 60;
 
-export default function Home() {
+export default async function Home() {
+  const products = await getProducts();
+  const featuredProducts = products.slice(0, 15);
+
   return (
     <main className="min-h-screen">
       <Header active="home" />
