@@ -174,7 +174,7 @@ export default function ServicesPage() {
 
                       <div className="flex items-center gap-3 mt-6">
                         <a
-                          href={`https://wa.me/60123456789?text=Hi, I'd like to know more about your ${service.title} service`}
+                          href={`https://wa.me/60189023676?text=Hi, I'd like to know more about your ${service.title} service`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
@@ -207,7 +207,7 @@ export default function ServicesPage() {
             </p>
             <div className="flex justify-center gap-3 mt-6">
               <a
-                href="https://wa.me/60123456789?text=Hi, I need help planning my event. Can you recommend services?"
+                href="https://wa.me/60189023676?text=Hi, I need help planning my event. Can you recommend services?"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"

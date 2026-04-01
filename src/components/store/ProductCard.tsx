@@ -33,7 +33,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
         <div className="mt-auto pt-3">
           <p className="text-sm font-bold">RM {price}</p>
           <a
-            href={`https://wa.me/60123456789?text=Hi, I'd like to get a quote for ${name} (RM${price})`}
+            href={`https://wa.me/60189023676?text=Hi, I'd like to get a quote for ${name} (RM${price})`}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 w-full flex items-center justify-center px-3 py-2 bg-primary text-white text-xs font-medium rounded-md hover:bg-black transition-colors"

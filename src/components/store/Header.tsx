@@ -31,7 +31,7 @@ export default function Header({ active = "" }: { active?: string }) {
         {/* Request Quotation - Right */}
         <div className="flex justify-end">
           <a
-            href="https://wa.me/60123456789?text=Hi, I'd like to request a quotation for my event"
+            href="https://wa.me/60189023676?text=Hi, I'd like to request a quotation for my event"
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2 bg-primary text-white text-xs font-medium rounded-md hover:bg-black transition-colors"

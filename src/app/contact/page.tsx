@@ -21,8 +21,8 @@ export default function ContactPage() {
             <div className="space-y-6">
               {[
                 { icon: MapPin, title: "Location", detail: "Kota Kinabalu, Sabah, Malaysia" },
-                { icon: Phone, title: "Phone", detail: "+60 12 345 6789" },
-                { icon: Mail, title: "Email", detail: "hello@eventsolutions.my" },
+                { icon: Phone, title: "Phone", detail: "+60 18 902 3676" },
+                { icon: Mail, title: "Email", detail: "sales@eventsolutions.my" },
                 { icon: Clock, title: "Working Hours", detail: "Mon to Sat, 9AM to 6PM" },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 border border-border rounded-lg p-5">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium mb-1">Phone</label>
                     <input
                       type="tel"
-                      placeholder="+60 12 345 6789"
+                      placeholder="+60 18 902 3676"
                       className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                     />
                   </div>

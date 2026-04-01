@@ -50,7 +50,7 @@ export default async function Home() {
             <FadeIn delay={0.3}>
               <div className="flex gap-3 mt-8">
                 <a
-                  href="https://wa.me/60123456789?text=Hi, I'd like to inquire about your event services"
+                  href="https://wa.me/60189023676?text=Hi, I'd like to inquire about your event services"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"

@@ -100,7 +100,7 @@ export default async function ProductDetail({
             <FadeIn delay={0.5}>
               <div className="mt-10 flex gap-3">
                 <a
-                  href={`https://wa.me/60123456789?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
+                  href={`https://wa.me/60189023676?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center px-6 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"

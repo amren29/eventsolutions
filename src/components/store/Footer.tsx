@@ -24,8 +24,8 @@ export default function Footer() {
             <p className="text-xs font-semibold text-gray uppercase tracking-wide mb-3">Contact</p>
             <ul className="space-y-2 text-sm text-gray">
               <li>Kota Kinabalu, Sabah</li>
-              <li>+60 12 345 6789</li>
-              <li>hello@eventsolutions.my</li>
+              <li>+60 18 902 3676</li>
+              <li>sales@eventsolutions.my</li>
               <li>Mon to Sat, 9AM to 6PM</li>
             </ul>
           </div>
