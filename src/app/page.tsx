@@ -23,12 +23,12 @@ export default async function Home() {
           <div>
             <FadeIn>
               <h2 className="text-3xl font-bold leading-tight">
-                Your One Stop Event Partner in Kota Kinabalu
+                All-in-One Event Solutions in Sabah
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-gray mt-4 leading-relaxed">
-                Event Solutions is a full service event company based in Kota Kinabalu, Sabah. We supply everything you need, from tents, tables, and chairs to lighting, sound systems, stage setups, and complete event decoration. Whether it&apos;s a wedding, corporate dinner, birthday, or any celebration, we handle it all so you don&apos;t have to.
+                Based in Kota Kinabalu &amp; Tuaran, we handle everything from setup to styling so you don&apos;t have to. Available for events throughout Sabah.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
