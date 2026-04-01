@@ -103,6 +103,18 @@ export default function AdminProducts() {
       includes: form.includes.split("\n").filter((s) => s.trim()),
     };
 
+    // Auto-insert category if new
+    if (productData.category) {
+      const { data: existingCat } = await supabase
+        .from("categories")
+        .select("id")
+        .eq("name", productData.category)
+        .single();
+      if (!existingCat) {
+        await supabase.from("categories").insert({ name: productData.category, description: "" });
+      }
+    }
+
     if (editingId !== null) {
       await supabase.from("products").update(productData).eq("id", editingId);
     } else {
@@ -226,6 +238,19 @@ export default function AdminProducts() {
       alert("No valid products found in file.");
       setImporting(false);
       return;
+    }
+
+    // Auto-insert categories
+    const newCategories = [...new Set(productsToInsert.map((p) => p.category).filter(Boolean))];
+    if (newCategories.length > 0) {
+      const { data: existingCats } = await supabase.from("categories").select("name");
+      const existingNames = new Set((existingCats || []).map((c) => c.name));
+      const catsToInsert = newCategories
+        .filter((name) => !existingNames.has(name))
+        .map((name) => ({ name, description: "" }));
+      if (catsToInsert.length > 0) {
+        await supabase.from("categories").insert(catsToInsert);
+      }
     }
 
     const { error: insertError } = await supabase.from("products").insert(productsToInsert);
