@@ -17,6 +17,7 @@ export default function AdminProducts() {
   const [imagePreview, setImagePreview] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const excelInputRef = useRef<HTMLInputElement>(null);
+  const [selected, setSelected] = useState<Set<number>>(new Set());
   const [form, setForm] = useState({
     name: "",
     slug: "",
@@ -145,7 +146,33 @@ export default function AdminProducts() {
   const handleDelete = async (id: number) => {
     if (!confirm("Delete this product?")) return;
     await supabase.from("products").delete().eq("id", id);
+    setSelected((prev) => { const next = new Set(prev); next.delete(id); return next; });
     fetchProducts();
+  };
+
+  const handleBulkDelete = async () => {
+    if (selected.size === 0) return;
+    if (!confirm(`Delete ${selected.size} selected product${selected.size > 1 ? "s" : ""}?`)) return;
+    await supabase.from("products").delete().in("id", [...selected]);
+    setSelected(new Set());
+    fetchProducts();
+  };
+
+  const toggleSelect = (id: number) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selected.size === products.length) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(products.map((p) => p.id)));
+    }
   };
 
   // Excel export
@@ -290,6 +317,17 @@ export default function AdminProducts() {
           <p className="text-sm text-gray mt-1">Manage your product catalog.</p>
         </div>
         <div className="flex items-center gap-2">
+          {/* Bulk Delete */}
+          {selected.size > 0 && (
+            <button
+              onClick={handleBulkDelete}
+              className="inline-flex items-center gap-2 px-3 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600 transition-colors"
+            >
+              <Trash2 className="w-4 h-4" />
+              Delete ({selected.size})
+            </button>
+          )}
+
           {/* Download Template */}
           <button
             onClick={handleDownloadTemplate}
@@ -539,6 +577,14 @@ export default function AdminProducts() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-border text-left">
+                <th className="pl-5 pr-2 py-3">
+                  <input
+                    type="checkbox"
+                    checked={products.length > 0 && selected.size === products.length}
+                    onChange={toggleSelectAll}
+                    className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
+                  />
+                </th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Image</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Product</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Category</th>
@@ -548,7 +594,15 @@ export default function AdminProducts() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
+                <tr key={product.id} className={`border-b border-border last:border-0 hover:bg-gray-light/50 ${selected.has(product.id) ? "bg-blue-50/50" : ""}`}>
+                  <td className="pl-5 pr-2 py-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.has(product.id)}
+                      onChange={() => toggleSelect(product.id)}
+                      className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
+                    />
+                  </td>
                   <td className="px-5 py-3">
                     {product.image_url ? (
                       <img src={product.image_url} alt="" className="w-12 h-12 object-cover rounded-md border border-border" />

@@ -11,6 +11,7 @@ export default function AdminCategories() {
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
+  const [selected, setSelected] = useState<Set<number>>(new Set());
   const [form, setForm] = useState({ name: "", description: "" });
 
   const fetchCategories = async () => {
@@ -63,8 +64,35 @@ export default function AdminCategories() {
   };
 
   const handleDelete = async (id: number) => {
+    if (!confirm("Delete this category?")) return;
     await supabase.from("categories").delete().eq("id", id);
+    setSelected((prev) => { const next = new Set(prev); next.delete(id); return next; });
     fetchCategories();
+  };
+
+  const handleBulkDelete = async () => {
+    if (selected.size === 0) return;
+    if (!confirm(`Delete ${selected.size} selected categor${selected.size > 1 ? "ies" : "y"}?`)) return;
+    await supabase.from("categories").delete().in("id", [...selected]);
+    setSelected(new Set());
+    fetchCategories();
+  };
+
+  const toggleSelect = (id: number) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selected.size === categories.length) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(categories.map((c) => c.id)));
+    }
   };
 
   if (loading) {
@@ -90,13 +118,24 @@ export default function AdminCategories() {
           <h1 className="text-xl font-bold">Categories</h1>
           <p className="text-sm text-gray mt-1">Organize your products.</p>
         </div>
-        <button
-          onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
-        >
-          <Plus className="w-4 h-4" />
-          Add Category
-        </button>
+        <div className="flex items-center gap-2">
+          {selected.size > 0 && (
+            <button
+              onClick={handleBulkDelete}
+              className="inline-flex items-center gap-2 px-3 py-2 bg-red-500 text-white rounded-md text-sm font-medium hover:bg-red-600 transition-colors"
+            >
+              <Trash2 className="w-4 h-4" />
+              Delete ({selected.size})
+            </button>
+          )}
+          <button
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Add Category
+          </button>
+        </div>
       </div>
 
       {/* Modal */}
@@ -168,27 +207,55 @@ export default function AdminCategories() {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((category) => (
-            <div key={category.id} className="bg-white border border-border rounded-lg p-5">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-medium">{category.name}</h3>
-                  {category.description && (
-                    <p className="text-sm text-gray mt-1">{category.description}</p>
-                  )}
-                </div>
-                <div className="flex items-center gap-1">
-                  <button onClick={() => handleEdit(category)} className="p-1.5 hover:bg-gray-light">
-                    <Pencil className="w-4 h-4 text-gray" />
-                  </button>
-                  <button onClick={() => handleDelete(category.id)} className="p-1.5 hover:bg-red-50">
-                    <Trash2 className="w-4 h-4 text-red-500" />
-                  </button>
+        <div>
+          {/* Select All */}
+          <div className="flex items-center gap-3 mb-4">
+            <input
+              type="checkbox"
+              checked={categories.length > 0 && selected.size === categories.length}
+              onChange={toggleSelectAll}
+              className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
+            />
+            <span className="text-sm text-gray">
+              {selected.size > 0 ? `${selected.size} selected` : "Select all"}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className={`bg-white border rounded-lg p-5 transition-colors ${
+                  selected.has(category.id) ? "border-primary bg-blue-50/50" : "border-border"
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.has(category.id)}
+                      onChange={() => toggleSelect(category.id)}
+                      className="w-4 h-4 mt-0.5 rounded border-border accent-primary cursor-pointer"
+                    />
+                    <div>
+                      <h3 className="font-medium">{category.name}</h3>
+                      {category.description && (
+                        <p className="text-sm text-gray mt-1">{category.description}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button onClick={() => handleEdit(category)} className="p-1.5 hover:bg-gray-light rounded-md">
+                      <Pencil className="w-4 h-4 text-gray" />
+                    </button>
+                    <button onClick={() => handleDelete(category.id)} className="p-1.5 hover:bg-red-50 rounded-md">
+                      <Trash2 className="w-4 h-4 text-red-500" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>
