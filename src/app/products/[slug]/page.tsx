@@ -49,7 +49,7 @@ export default async function ProductDetail({
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Image */}
           <SlideIn direction="left">
-            <div className="relative aspect-square bg-gray-light overflow-hidden">
+            <div className="relative aspect-square bg-gray-light overflow-hidden rounded-lg">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -87,7 +87,7 @@ export default async function ProductDetail({
                   <ul className="space-y-2">
                     {product.includes.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-gray">
-                        <span className="w-1.5 h-1.5 bg-primary mt-1.5 shrink-0" />
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -103,13 +103,13 @@ export default async function ProductDetail({
                   href={`https://wa.me/60123456789?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center px-6 py-3 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+                  className="flex-1 flex items-center justify-center px-6 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Ask for Quote via WhatsApp
                 </a>
                 <Link
                   href="/contact"
-                  className="px-6 py-3 border border-border text-sm font-medium hover:border-primary transition-colors"
+                  className="px-6 py-3 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                 >
                   Contact Us
                 </Link>

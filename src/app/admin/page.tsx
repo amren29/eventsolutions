@@ -45,19 +45,19 @@ export default function AdminDashboard() {
       <p className="text-sm text-gray mb-8">Welcome to Event Solutions admin.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-        <div className="bg-white border border-border p-6">
+        <div className="bg-white border border-border rounded-lg p-6">
           <Package className="w-5 h-5 text-gray mb-3" />
           <p className="text-2xl font-bold">{productCount}</p>
           <p className="text-sm text-gray">Products</p>
         </div>
-        <div className="bg-white border border-border p-6">
+        <div className="bg-white border border-border rounded-lg p-6">
           <FolderOpen className="w-5 h-5 text-gray mb-3" />
           <p className="text-2xl font-bold">{categoryCount}</p>
           <p className="text-sm text-gray">Categories</p>
         </div>
       </div>
 
-      <div className="bg-white border border-border p-6">
+      <div className="bg-white border border-border rounded-lg p-6">
         <h2 className="font-semibold mb-2">Quick Start</h2>
         <p className="text-sm text-gray mb-4">
           Add categories first, then add products.
@@ -65,13 +65,13 @@ export default function AdminDashboard() {
         <div className="flex gap-3">
           <Link
             href="/admin/categories"
-            className="px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+            className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
           >
             Add Categories
           </Link>
           <Link
             href="/admin/products"
-            className="px-4 py-2 border border-border text-sm font-medium hover:border-primary/30 transition-colors"
+            className="px-4 py-2 border border-border text-sm font-medium rounded-md hover:border-primary/30 transition-colors"
           >
             Add Products
           </Link>

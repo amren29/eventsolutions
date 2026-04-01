@@ -77,7 +77,7 @@ export default function AdminCategories() {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 p-6 text-center">
+      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
         <p className="text-red-600 font-medium">{error}</p>
       </div>
     );
@@ -92,7 +92,7 @@ export default function AdminCategories() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Category
@@ -102,7 +102,7 @@ export default function AdminCategories() {
       {/* Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="bg-white p-6 w-full max-w-md shadow-xl">
+          <div className="bg-white p-6 w-full max-w-md shadow-xl rounded-lg">
             <div className="flex items-center justify-between mb-5">
               <h2 className="font-bold">
                 {editingId ? "Edit Category" : "Add Category"}
@@ -120,7 +120,7 @@ export default function AdminCategories() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                 />
               </div>
               <div>
@@ -129,21 +129,21 @@ export default function AdminCategories() {
                   rows={3}
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary resize-none"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary resize-none"
                 />
               </div>
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 px-4 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors"
+                  className="flex-1 px-4 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {saving ? "Saving..." : editingId ? "Update" : "Add"}
                 </button>
@@ -155,13 +155,13 @@ export default function AdminCategories() {
 
       {/* List */}
       {categories.length === 0 ? (
-        <div className="bg-white border border-border p-12 text-center">
+        <div className="bg-white border border-border rounded-lg p-12 text-center">
           <FolderOpen className="w-10 h-10 text-border mx-auto mb-3" />
           <p className="font-medium mb-1">No categories yet</p>
           <p className="text-sm text-gray mb-4">Create your first category.</p>
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md"
           >
             <Plus className="w-4 h-4" />
             Add Category
@@ -170,7 +170,7 @@ export default function AdminCategories() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((category) => (
-            <div key={category.id} className="bg-white border border-border p-5">
+            <div key={category.id} className="bg-white border border-border rounded-lg p-5">
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-medium">{category.name}</h3>

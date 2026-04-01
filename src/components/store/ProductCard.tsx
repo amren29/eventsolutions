@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ slug, name, subtitle, category, price, image }: ProductCardProps) {
   return (
-    <div className="border border-border hover:border-primary/30 transition-colors flex flex-col h-full">
+    <div className="border border-border rounded-lg hover:border-primary/30 transition-colors flex flex-col h-full overflow-hidden">
       <Link href={`/products/${slug}`} className="block">
         <div className="aspect-square bg-gray-light relative overflow-hidden shrink-0">
           <Image
@@ -36,7 +36,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
             href={`https://wa.me/60123456789?text=Hi, I'd like to get a quote for ${name} (RM${price})`}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 w-full flex items-center justify-center px-3 py-2 bg-primary text-white text-xs font-medium hover:bg-black transition-colors"
+            className="mt-2 w-full flex items-center justify-center px-3 py-2 bg-primary text-white text-xs font-medium rounded-md hover:bg-black transition-colors"
           >
             Ask for Quote
           </a>

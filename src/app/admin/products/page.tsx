@@ -276,7 +276,7 @@ export default function AdminProducts() {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 p-6 text-center">
+      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
         <p className="text-red-600 font-medium">{error}</p>
       </div>
     );
@@ -293,7 +293,7 @@ export default function AdminProducts() {
           {/* Download Template */}
           <button
             onClick={handleDownloadTemplate}
-            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light transition-colors"
           >
             <FileSpreadsheet className="w-4 h-4" />
             Template
@@ -310,7 +310,7 @@ export default function AdminProducts() {
           <button
             onClick={() => excelInputRef.current?.click()}
             disabled={importing}
-            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
           >
             {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
             Import
@@ -320,7 +320,7 @@ export default function AdminProducts() {
           <button
             onClick={handleExport}
             disabled={products.length === 0}
-            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light transition-colors disabled:opacity-50"
           >
             <Download className="w-4 h-4" />
             Export
@@ -329,7 +329,7 @@ export default function AdminProducts() {
           {/* Add Product */}
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Product
@@ -340,7 +340,7 @@ export default function AdminProducts() {
       {/* Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="bg-white p-6 w-full max-w-lg shadow-xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white p-6 w-full max-w-lg shadow-xl rounded-lg max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-5">
               <h2 className="font-bold">
                 {editingId ? "Edit Product" : "Add Product"}
@@ -358,7 +358,7 @@ export default function AdminProducts() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value, slug: generateSlug(e.target.value) })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                 />
               </div>
               <div>
@@ -368,7 +368,7 @@ export default function AdminProducts() {
                   required
                   value={form.slug}
                   onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary text-gray"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary text-gray"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -379,7 +379,7 @@ export default function AdminProducts() {
                     required
                     value={form.category}
                     onChange={(e) => setForm({ ...form, category: e.target.value })}
-                    className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
                 <div>
@@ -391,7 +391,7 @@ export default function AdminProducts() {
                     step="0.01"
                     value={form.price}
                     onChange={(e) => setForm({ ...form, price: e.target.value })}
-                    className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
@@ -401,7 +401,7 @@ export default function AdminProducts() {
                   type="text"
                   value={form.subtitle}
                   onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                 />
               </div>
               <div>
@@ -410,7 +410,7 @@ export default function AdminProducts() {
                   rows={3}
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary resize-none"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary resize-none"
                 />
               </div>
 
@@ -426,11 +426,11 @@ export default function AdminProducts() {
                 />
 
                 {(imagePreview || form.image_url) ? (
-                  <div className="relative border border-border p-2">
+                  <div className="relative border border-border rounded-lg p-2">
                     <img
                       src={imagePreview || form.image_url}
                       alt="Preview"
-                      className="w-full h-40 object-cover"
+                      className="w-full h-40 object-cover rounded-md"
                     />
                     <div className="flex gap-2 mt-2">
                       <button
@@ -455,7 +455,7 @@ export default function AdminProducts() {
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploading}
-                    className="w-full border-2 border-dashed border-border py-8 flex flex-col items-center gap-2 hover:border-primary/30 transition-colors"
+                    className="w-full border-2 border-dashed border-border rounded-lg py-8 flex flex-col items-center gap-2 hover:border-primary/30 transition-colors"
                   >
                     {uploading ? (
                       <Loader2 className="w-6 h-6 animate-spin text-gray" />
@@ -475,7 +475,7 @@ export default function AdminProducts() {
                     value={form.image_url}
                     onChange={(e) => { setForm({ ...form, image_url: e.target.value }); setImagePreview(e.target.value); }}
                     placeholder="Or paste image URL..."
-                    className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
               </div>
@@ -487,21 +487,21 @@ export default function AdminProducts() {
                   value={form.includes}
                   onChange={(e) => setForm({ ...form, includes: e.target.value })}
                   placeholder={"Item 1\nItem 2\nItem 3"}
-                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary resize-none"
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary resize-none"
                 />
               </div>
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 px-4 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors"
+                  className="flex-1 px-4 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {saving ? "Saving..." : editingId ? "Update" : "Add"}
                 </button>
@@ -513,21 +513,21 @@ export default function AdminProducts() {
 
       {/* List */}
       {products.length === 0 ? (
-        <div className="bg-white border border-border p-12 text-center">
+        <div className="bg-white border border-border rounded-lg p-12 text-center">
           <Package className="w-10 h-10 text-border mx-auto mb-3" />
           <p className="font-medium mb-1">No products yet</p>
           <p className="text-sm text-gray mb-4">Add your first product or import from Excel.</p>
           <div className="flex justify-center gap-3">
             <button
               onClick={() => setShowForm(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md"
             >
               <Plus className="w-4 h-4" />
               Add Product
             </button>
             <button
               onClick={() => excelInputRef.current?.click()}
-              className="inline-flex items-center gap-2 px-4 py-2 border border-border text-sm font-medium hover:bg-gray-light"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-md text-sm font-medium hover:bg-gray-light"
             >
               <FileSpreadsheet className="w-4 h-4" />
               Import Excel
@@ -535,7 +535,7 @@ export default function AdminProducts() {
           </div>
         </div>
       ) : (
-        <div className="bg-white border border-border overflow-hidden">
+        <div className="bg-white border border-border rounded-lg overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border text-left">
@@ -551,9 +551,9 @@ export default function AdminProducts() {
                 <tr key={product.id} className="border-b border-border last:border-0 hover:bg-gray-light/50">
                   <td className="px-5 py-3">
                     {product.image_url ? (
-                      <img src={product.image_url} alt="" className="w-12 h-12 object-cover border border-border" />
+                      <img src={product.image_url} alt="" className="w-12 h-12 object-cover rounded-md border border-border" />
                     ) : (
-                      <div className="w-12 h-12 bg-gray-light flex items-center justify-center border border-border">
+                      <div className="w-12 h-12 bg-gray-light flex items-center justify-center rounded-md border border-border">
                         <ImageIcon className="w-4 h-4 text-gray" />
                       </div>
                     )}

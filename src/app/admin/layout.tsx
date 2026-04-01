@@ -33,7 +33,7 @@ export default function AdminLayout({
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-3 px-3 py-2.5  text-sm transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
                   isActive
                     ? "bg-primary text-white font-medium"
                     : "text-gray hover:text-primary hover:bg-gray-light"
@@ -49,7 +49,7 @@ export default function AdminLayout({
         <div className="p-3 border-t border-border">
           <Link
             href="/"
-            className="flex items-center gap-3 px-3 py-2.5  text-sm text-gray hover:text-primary hover:bg-gray-light transition-colors"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-gray hover:text-primary hover:bg-gray-light transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Store

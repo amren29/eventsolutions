@@ -25,7 +25,7 @@ export default function ContactPage() {
                 { icon: Mail, title: "Email", detail: "hello@eventsolutions.my" },
                 { icon: Clock, title: "Working Hours", detail: "Mon to Sat, 9AM to 6PM" },
               ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4 border border-border p-5">
+                <div key={item.title} className="flex items-start gap-4 border border-border rounded-lg p-5">
                   <item.icon className="w-5 h-5 text-gray mt-0.5 shrink-0" />
                   <div>
                     <h3 className="text-sm font-semibold">{item.title}</h3>
@@ -38,7 +38,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <SlideIn direction="right" className="lg:col-span-2">
-            <div className="border border-border p-8">
+            <div className="border border-border rounded-lg p-8">
               <h2 className="font-semibold mb-6">Send us a message</h2>
               <form className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -47,7 +47,7 @@ export default function ContactPage() {
                     <input
                       type="text"
                       placeholder="Your name"
-                      className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                     />
                   </div>
                   <div>
@@ -55,7 +55,7 @@ export default function ContactPage() {
                     <input
                       type="email"
                       placeholder="your@email.com"
-                      className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                     />
                   </div>
                 </div>
@@ -65,12 +65,12 @@ export default function ContactPage() {
                     <input
                       type="tel"
                       placeholder="+60 12 345 6789"
-                      className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary"
+                      className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1">Event Type</label>
-                    <select className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary text-gray">
+                    <select className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary text-gray">
                       <option>Select event type</option>
                       <option>Wedding</option>
                       <option>Corporate Event</option>
@@ -85,12 +85,12 @@ export default function ContactPage() {
                   <textarea
                     rows={5}
                     placeholder="Tell us about your event..."
-                    className="w-full px-3 py-2.5 border border-border text-sm focus:outline-none focus:border-primary resize-none"
+                    className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary resize-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="px-8 py-2.5 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+                  className="px-8 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Send Message
                 </button>

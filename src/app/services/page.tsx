@@ -122,7 +122,7 @@ export default function ServicesPage() {
               <StaggerItem key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="border border-border px-3 py-2.5 text-xs text-center text-gray hover:text-primary hover:border-primary/30 transition-colors block"
+                  className="border border-border rounded-md px-3 py-2.5 text-xs text-center text-gray hover:text-primary hover:border-primary/30 transition-colors block"
                 >
                   {s.title}
                 </a>
@@ -145,7 +145,7 @@ export default function ServicesPage() {
                 <div className={`grid lg:grid-cols-2 gap-10 items-center`}>
                   {/* Image */}
                   <SlideIn direction={isEven ? "left" : "right"} className={!isEven ? "lg:order-2" : ""}>
-                    <div className="relative aspect-[4/3] bg-gray-light overflow-hidden">
+                    <div className="relative aspect-[4/3] bg-gray-light overflow-hidden rounded-lg">
                       <Image
                         src={service.image}
                         alt={service.title}
@@ -166,7 +166,7 @@ export default function ServicesPage() {
                       {/* Highlights */}
                       <div className="flex flex-wrap gap-3 mt-5">
                         {service.highlights.map((h) => (
-                          <span key={h} className="text-xs border border-border px-3 py-1.5">
+                          <span key={h} className="text-xs border border-border rounded-md px-3 py-1.5">
                             {h}
                           </span>
                         ))}
@@ -177,13 +177,13 @@ export default function ServicesPage() {
                           href={`https://wa.me/60123456789?text=Hi, I'd like to know more about your ${service.title} service`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-6 py-2.5 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+                          className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                         >
                           Enquire Now
                         </a>
                         <Link
                           href={`/products?category=${encodeURIComponent(service.category)}`}
-                          className="px-6 py-2.5 border border-border text-sm font-medium hover:border-primary transition-colors"
+                          className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                         >
                           View Products
                         </Link>
@@ -210,13 +210,13 @@ export default function ServicesPage() {
                 href="https://wa.me/60123456789?text=Hi, I need help planning my event. Can you recommend services?"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+                className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
               >
                 Chat on WhatsApp
               </a>
               <Link
                 href="/contact"
-                className="px-6 py-2.5 border border-border text-sm font-medium hover:border-primary transition-colors"
+                className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
               >
                 Contact Us
               </Link>

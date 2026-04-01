@@ -53,20 +53,20 @@ export default async function Home() {
                   href="https://wa.me/60123456789?text=Hi, I'd like to inquire about your event services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+                  className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Get a Quote
                 </a>
                 <a
                   href="/contact"
-                  className="px-6 py-2.5 border border-border text-sm font-medium hover:border-primary transition-colors"
+                  className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                 >
                   Contact Us
                 </a>
               </div>
             </FadeIn>
           </div>
-          <FadeIn delay={0.2} className="relative aspect-[4/3] overflow-hidden hidden lg:block">
+          <FadeIn delay={0.2} className="relative aspect-[4/3] overflow-hidden rounded-lg hidden lg:block">
             <Image
               src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop"
               alt="Event setup by Event Solutions"
@@ -89,7 +89,7 @@ export default async function Home() {
           <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {services.map((s) => (
               <StaggerItem key={s}>
-                <div className="border border-border px-4 py-3 text-sm text-center hover:border-primary/30 transition-colors">
+                <div className="border border-border px-4 py-3 text-sm text-center rounded-md hover:border-primary/30 transition-colors">
                   {s}
                 </div>
               </StaggerItem>
@@ -116,7 +116,7 @@ export default async function Home() {
           <FadeInView className="mt-8 text-center">
             <a
               href="/products"
-              className="inline-block px-8 py-3 bg-primary text-white text-sm font-medium hover:bg-black transition-colors"
+              className="inline-block px-8 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
             >
               Show More Products
             </a>
