@@ -155,6 +155,50 @@ export default function AdminProducts() {
     XLSX.writeFile(wb, "products.xlsx");
   };
 
+  // Download template
+  const handleDownloadTemplate = () => {
+    const sampleData = [
+      {
+        Name: "Premium Tent 10x10",
+        Slug: "premium-tent-10x10",
+        Category: "Tents & Canopy",
+        Price: 500,
+        Subtitle: "Heavy duty canopy with sidewalls",
+        Description: "Our premium 10x10 heavy duty canopy is perfect for small to medium outdoor events.",
+        "Image URL": "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=400&h=400&fit=crop",
+        Includes: "10x10 ft steel frame canopy; Waterproof PVC roof cover; 4x removable sidewalls; Delivery and setup",
+      },
+      {
+        Name: "Round Table 5ft",
+        Slug: "round-table-5ft",
+        Category: "Tables & Chairs",
+        Price: 30,
+        Subtitle: "Seats 8-10 guests",
+        Description: "Standard 5ft round banquet table, perfect for weddings and corporate events.",
+        "Image URL": "",
+        Includes: "5ft round table; White table cloth; Delivery",
+      },
+    ];
+
+    const ws = XLSX.utils.json_to_sheet(sampleData);
+
+    // Set column widths
+    ws["!cols"] = [
+      { wch: 25 }, // Name
+      { wch: 25 }, // Slug
+      { wch: 18 }, // Category
+      { wch: 10 }, // Price
+      { wch: 35 }, // Subtitle
+      { wch: 50 }, // Description
+      { wch: 40 }, // Image URL
+      { wch: 50 }, // Includes
+    ];
+
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Products");
+    XLSX.writeFile(wb, "products-template.xlsx");
+  };
+
   // Excel import
   const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -221,6 +265,15 @@ export default function AdminProducts() {
           <p className="text-sm text-gray mt-1">Manage your product catalog.</p>
         </div>
         <div className="flex items-center gap-2">
+          {/* Download Template */}
+          <button
+            onClick={handleDownloadTemplate}
+            className="inline-flex items-center gap-2 px-3 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors"
+          >
+            <FileSpreadsheet className="w-4 h-4" />
+            Template
+          </button>
+
           {/* Excel Import */}
           <input
             ref={excelInputRef}
