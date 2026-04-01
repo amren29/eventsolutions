@@ -207,55 +207,57 @@ export default function AdminCategories() {
           </button>
         </div>
       ) : (
-        <div>
-          {/* Select All */}
-          <div className="flex items-center gap-3 mb-4">
-            <input
-              type="checkbox"
-              checked={categories.length > 0 && selected.size === categories.length}
-              onChange={toggleSelectAll}
-              className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
-            />
-            <span className="text-sm text-gray">
-              {selected.size > 0 ? `${selected.size} selected` : "Select all"}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {categories.map((category) => (
-              <div
-                key={category.id}
-                className={`bg-white border rounded-lg p-5 transition-colors ${
-                  selected.has(category.id) ? "border-primary bg-blue-50/50" : "border-border"
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-3">
+        <div className="bg-white border border-border rounded-lg overflow-hidden">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-border text-left">
+                <th className="pl-5 pr-2 py-3">
+                  <input
+                    type="checkbox"
+                    checked={categories.length > 0 && selected.size === categories.length}
+                    onChange={toggleSelectAll}
+                    className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
+                  />
+                </th>
+                <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Name</th>
+                <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Description</th>
+                <th className="px-5 py-3 text-xs font-semibold text-gray uppercase text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories.map((category) => (
+                <tr
+                  key={category.id}
+                  className={`border-b border-border last:border-0 hover:bg-gray-light/50 ${
+                    selected.has(category.id) ? "bg-blue-50/50" : ""
+                  }`}
+                >
+                  <td className="pl-5 pr-2 py-3">
                     <input
                       type="checkbox"
                       checked={selected.has(category.id)}
                       onChange={() => toggleSelect(category.id)}
-                      className="w-4 h-4 mt-0.5 rounded border-border accent-primary cursor-pointer"
+                      className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
                     />
-                    <div>
-                      <h3 className="font-medium">{category.name}</h3>
-                      {category.description && (
-                        <p className="text-sm text-gray mt-1">{category.description}</p>
-                      )}
+                  </td>
+                  <td className="px-5 py-3">
+                    <p className="font-medium text-sm">{category.name}</p>
+                  </td>
+                  <td className="px-5 py-3 text-sm text-gray">{category.description || "—"}</td>
+                  <td className="px-5 py-3">
+                    <div className="flex items-center justify-end gap-1">
+                      <button onClick={() => handleEdit(category)} className="p-1.5 hover:bg-gray-light rounded-md">
+                        <Pencil className="w-4 h-4 text-gray" />
+                      </button>
+                      <button onClick={() => handleDelete(category.id)} className="p-1.5 hover:bg-red-50 rounded-md">
+                        <Trash2 className="w-4 h-4 text-red-500" />
+                      </button>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button onClick={() => handleEdit(category)} className="p-1.5 hover:bg-gray-light rounded-md">
-                      <Pencil className="w-4 h-4 text-gray" />
-                    </button>
-                    <button onClick={() => handleDelete(category.id)} className="p-1.5 hover:bg-red-50 rounded-md">
-                      <Trash2 className="w-4 h-4 text-red-500" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
