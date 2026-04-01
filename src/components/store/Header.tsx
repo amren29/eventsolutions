@@ -9,7 +9,7 @@ export default function Header({ active = "" }: { active?: string }) {
           <Link href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">
             Event Solutions
           </Link>
-          <p className="text-xs text-gray">Event Supplies & Management · Kota Kinabalu</p>
+          <p className="text-xs text-gray">Event Supplies & Management</p>
         </div>
 
         {/* Menu - Centre */}
