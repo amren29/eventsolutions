@@ -4,3 +4,23 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export interface DBProduct {
+  id: number;
+  slug: string;
+  name: string;
+  subtitle: string;
+  description: string;
+  category: string;
+  price: number;
+  image_url: string;
+  includes: string[];
+  created_at: string;
+}
+
+export interface DBCategory {
+  id: number;
+  name: string;
+  description: string;
+  created_at: string;
+}

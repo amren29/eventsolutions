@@ -1,19 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import { Plus, Pencil, Trash2, X, FolderOpen } from "lucide-react";
-
-interface Category {
-  id: number;
-  name: string;
-  description: string;
-}
+import { useState, useEffect } from "react";
+import { Plus, Pencil, Trash2, X, FolderOpen, Loader2 } from "lucide-react";
+import { supabase, DBCategory } from "@/lib/supabase";
 
 export default function AdminCategories() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<DBCategory[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ name: "", description: "" });
+
+  const fetchCategories = async () => {
+    const { data } = await supabase
+      .from("categories")
+      .select("*")
+      .order("created_at", { ascending: false });
+    setCategories(data || []);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const resetForm = () => {
     setForm({ name: "", description: "" });
@@ -21,23 +31,39 @@ export default function AdminCategories() {
     setShowForm(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSaving(true);
+
     if (editingId !== null) {
-      setCategories((prev) =>
-        prev.map((c) => (c.id === editingId ? { ...c, ...form } : c))
-      );
+      await supabase.from("categories").update(form).eq("id", editingId);
     } else {
-      setCategories((prev) => [...prev, { id: Date.now(), ...form }]);
+      await supabase.from("categories").insert(form);
     }
+
+    setSaving(false);
     resetForm();
+    fetchCategories();
   };
 
-  const handleEdit = (category: Category) => {
+  const handleEdit = (category: DBCategory) => {
     setForm({ name: category.name, description: category.description });
     setEditingId(category.id);
     setShowForm(true);
   };
+
+  const handleDelete = async (id: number) => {
+    await supabase.from("categories").delete().eq("id", id);
+    fetchCategories();
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <Loader2 className="w-6 h-6 animate-spin text-gray" />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -48,7 +74,7 @@ export default function AdminCategories() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium  hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Category
@@ -58,12 +84,12 @@ export default function AdminCategories() {
       {/* Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="bg-white  p-6 w-full max-w-md shadow-xl">
+          <div className="bg-white p-6 w-full max-w-md shadow-xl">
             <div className="flex items-center justify-between mb-5">
               <h2 className="font-bold">
                 {editingId ? "Edit Category" : "Add Category"}
               </h2>
-              <button onClick={resetForm} className="p-1 hover:bg-gray-light ">
+              <button onClick={resetForm} className="p-1 hover:bg-gray-light">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -76,7 +102,7 @@ export default function AdminCategories() {
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-border  text-sm focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary"
                 />
               </div>
               <div>
@@ -85,22 +111,23 @@ export default function AdminCategories() {
                   rows={3}
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full px-3 py-2 border border-border  text-sm focus:outline-none focus:border-primary resize-none"
+                  className="w-full px-3 py-2 border border-border text-sm focus:outline-none focus:border-primary resize-none"
                 />
               </div>
               <div className="flex gap-3 pt-2">
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 px-4 py-2 border border-border text-sm font-medium  hover:bg-gray-light transition-colors"
+                  className="flex-1 px-4 py-2 border border-border text-sm font-medium hover:bg-gray-light transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium  hover:bg-primary/90 transition-colors"
+                  disabled={saving}
+                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  {editingId ? "Update" : "Add"}
+                  {saving ? "Saving..." : editingId ? "Update" : "Add"}
                 </button>
               </div>
             </form>
@@ -110,13 +137,13 @@ export default function AdminCategories() {
 
       {/* List */}
       {categories.length === 0 ? (
-        <div className="bg-white border border-border  p-12 text-center">
+        <div className="bg-white border border-border p-12 text-center">
           <FolderOpen className="w-10 h-10 text-border mx-auto mb-3" />
           <p className="font-medium mb-1">No categories yet</p>
           <p className="text-sm text-gray mb-4">Create your first category.</p>
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium "
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium"
           >
             <Plus className="w-4 h-4" />
             Add Category
@@ -125,10 +152,7 @@ export default function AdminCategories() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((category) => (
-            <div
-              key={category.id}
-              className="bg-white border border-border  p-5"
-            >
+            <div key={category.id} className="bg-white border border-border p-5">
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-medium">{category.name}</h3>
@@ -137,13 +161,10 @@ export default function AdminCategories() {
                   )}
                 </div>
                 <div className="flex items-center gap-1">
-                  <button onClick={() => handleEdit(category)} className="p-1.5  hover:bg-gray-light">
+                  <button onClick={() => handleEdit(category)} className="p-1.5 hover:bg-gray-light">
                     <Pencil className="w-4 h-4 text-gray" />
                   </button>
-                  <button
-                    onClick={() => setCategories((prev) => prev.filter((c) => c.id !== category.id))}
-                    className="p-1.5  hover:bg-red-50"
-                  >
+                  <button onClick={() => handleDelete(category.id)} className="p-1.5 hover:bg-red-50">
                     <Trash2 className="w-4 h-4 text-red-500" />
                   </button>
                 </div>
