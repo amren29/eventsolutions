@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Package, FolderOpen, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 export default function AdminDashboard() {
   const [productCount, setProductCount] = useState(0);
@@ -12,12 +12,20 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     async function fetchCounts() {
-      const [products, categories] = await Promise.all([
-        supabase.from("products").select("id", { count: "exact", head: true }),
-        supabase.from("categories").select("id", { count: "exact", head: true }),
-      ]);
-      setProductCount(products.count || 0);
-      setCategoryCount(categories.count || 0);
+      if (!isSupabaseConfigured) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const [products, categories] = await Promise.all([
+          supabase.from("products").select("id", { count: "exact", head: true }),
+          supabase.from("categories").select("id", { count: "exact", head: true }),
+        ]);
+        setProductCount(products.count || 0);
+        setCategoryCount(categories.count || 0);
+      } catch {
+        // ignore
+      }
       setLoading(false);
     }
     fetchCounts();

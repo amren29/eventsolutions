@@ -2,22 +2,32 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Pencil, Trash2, X, FolderOpen, Loader2 } from "lucide-react";
-import { supabase, DBCategory } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured, DBCategory } from "@/lib/supabase";
 
 export default function AdminCategories() {
   const [categories, setCategories] = useState<DBCategory[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ name: "", description: "" });
 
   const fetchCategories = async () => {
-    const { data } = await supabase
-      .from("categories")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setCategories(data || []);
+    if (!isSupabaseConfigured) {
+      setError("Supabase is not configured. Add environment variables.");
+      setLoading(false);
+      return;
+    }
+    try {
+      const { data } = await supabase
+        .from("categories")
+        .select("*")
+        .order("created_at", { ascending: false });
+      setCategories(data || []);
+    } catch {
+      setError("Failed to connect to database.");
+    }
     setLoading(false);
   };
 
@@ -61,6 +71,14 @@ export default function AdminCategories() {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="w-6 h-6 animate-spin text-gray" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 p-6 text-center">
+        <p className="text-red-600 font-medium">{error}</p>
       </div>
     );
   }

@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Pencil, Trash2, X, Package, Loader2 } from "lucide-react";
-import { supabase, DBProduct } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured, DBProduct } from "@/lib/supabase";
 
 export default function AdminProducts() {
   const [products, setProducts] = useState<DBProduct[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
@@ -22,11 +23,20 @@ export default function AdminProducts() {
   });
 
   const fetchProducts = async () => {
-    const { data } = await supabase
-      .from("products")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setProducts(data || []);
+    if (!isSupabaseConfigured) {
+      setError("Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.");
+      setLoading(false);
+      return;
+    }
+    try {
+      const { data } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+      setProducts(data || []);
+    } catch {
+      setError("Failed to connect to database.");
+    }
     setLoading(false);
   };
 
@@ -93,6 +103,14 @@ export default function AdminProducts() {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="w-6 h-6 animate-spin text-gray" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 border border-red-200 p-6 text-center">
+        <p className="text-red-600 font-medium">{error}</p>
       </div>
     );
   }
