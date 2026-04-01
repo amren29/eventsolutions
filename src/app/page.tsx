@@ -34,16 +34,16 @@ export default async function Home() {
             <FadeIn delay={0.2}>
               <div className="grid grid-cols-3 gap-6 mt-8">
                 <div>
-                  <p className="text-2xl font-bold">500+</p>
-                  <p className="text-xs text-gray mt-1">Events Completed</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold">200+</p>
-                  <p className="text-xs text-gray mt-1">Happy Clients</p>
-                </div>
-                <div>
                   <p className="text-2xl font-bold">5+</p>
                   <p className="text-xs text-gray mt-1">Years Experience</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">100+</p>
+                  <p className="text-xs text-gray mt-1">Projects Completed</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">100+</p>
+                  <p className="text-xs text-gray mt-1">Happy Clients</p>
                 </div>
               </div>
             </FadeIn>
