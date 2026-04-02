@@ -3,103 +3,103 @@ import Link from "next/link";
 import Header from "@/components/store/Header";
 import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
-import { FadeIn, FadeInView, SlideIn, StaggerContainer, StaggerItem } from "@/components/store/Animate";
+import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
 
 const services = [
   {
     id: "event-supplies",
     title: "Event Supplies",
-    description: "We provide a full range of event supplies including tablecloths, cutlery, glassware, napkins, and all the essentials you need to host any event. Everything is cleaned, inspected, and delivered ready to use.",
-    highlights: ["500+ items available", "Same day delivery", "Cleaned & inspected"],
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=600&fit=crop",
+    description: "Full range of event supplies including tablecloths, cutlery, glassware, and essentials.",
+    highlights: ["500+ items", "Same day delivery", "Cleaned & inspected"],
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=400&fit=crop",
     category: "Tables & Chairs",
   },
   {
     id: "equipment-rental",
     title: "Equipment Rental",
-    description: "Rent professional event equipment without the hassle of buying. From generators and cooling fans to projectors and screens, we have everything to make your event run smoothly.",
-    highlights: ["Wide equipment range", "Technical support included", "Flexible rental periods"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop",
+    description: "Professional event equipment from generators and cooling fans to projectors and screens.",
+    highlights: ["Wide range", "Technical support", "Flexible rental"],
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
     category: "Audio & Sound",
   },
   {
     id: "event-decoration",
     title: "Event Decoration",
-    description: "Transform any venue into a stunning space. Our decoration team creates beautiful setups including flower arrangements, backdrops, draping, balloon arches, and themed decorations tailored to your vision.",
-    highlights: ["Custom themes", "Fresh & artificial flowers", "Full venue transformation"],
-    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&h=600&fit=crop",
+    description: "Beautiful setups including flower arrangements, backdrops, draping, and themed decorations.",
+    highlights: ["Custom themes", "Fresh flowers", "Full transformation"],
+    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600&h=400&fit=crop",
     category: "Decoration",
   },
   {
     id: "sound-lighting",
     title: "Sound & Lighting",
-    description: "Professional sound systems and lighting setups for events of all sizes. From basic PA systems for small gatherings to full concert rigs with moving heads and LED walls, we deliver crystal clear audio and stunning visuals.",
-    highlights: ["Events up to 1000 pax", "DMX lighting control", "On site technician"],
-    image: "https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=800&h=600&fit=crop",
+    description: "Professional sound systems and lighting for events of all sizes, with on-site technician.",
+    highlights: ["Up to 1000 pax", "DMX control", "Technician included"],
+    image: "https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=600&h=400&fit=crop",
     category: "Lighting",
   },
   {
     id: "full-event-management",
     title: "Full Event Management",
-    description: "Let us handle everything from concept to execution. Our experienced team manages vendor coordination, timeline planning, budget tracking, logistics, and on the day coordination so you can enjoy your event stress free.",
-    highlights: ["End to end planning", "Dedicated event manager", "200+ events managed"],
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop",
+    description: "End-to-end planning and execution including vendor coordination, logistics, and day-of management.",
+    highlights: ["End to end", "Dedicated manager", "200+ events"],
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
     category: "Services",
   },
   {
     id: "tent-canopy",
     title: "Tent & Canopy",
-    description: "We offer a wide selection of tents and canopies for outdoor events. From small 10x10 canopies to large marquees that fit hundreds of guests. All tents come with professional setup and teardown by our crew.",
-    highlights: ["10x10 to 40x40 sizes", "Waterproof & windproof", "Setup crew included"],
-    image: "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=800&h=600&fit=crop",
+    description: "Wide selection of tents and canopies from small 10x10 to large marquees with setup crew.",
+    highlights: ["10x10 to 40x40", "Waterproof", "Setup included"],
+    image: "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=600&h=400&fit=crop",
     category: "Tents & Canopy",
   },
   {
     id: "table-chair-rental",
     title: "Table & Chair Rental",
-    description: "Choose from our collection of tables and chairs to suit any event style. We offer round tables, banquet tables, cocktail tables, Tiffany chairs, plastic chairs, and more. All delivered and arranged to your floor plan.",
-    highlights: ["Multiple styles available", "Delivered & arranged", "Bulk pricing available"],
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=600&fit=crop",
+    description: "Round tables, banquet tables, cocktail tables, Tiffany chairs, and more delivered to your venue.",
+    highlights: ["Multiple styles", "Delivered & arranged", "Bulk pricing"],
+    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=600&h=400&fit=crop",
     category: "Tables & Chairs",
   },
   {
     id: "stage-setup",
     title: "Stage Setup",
-    description: "Custom stage and platform setups for performances, speeches, and ceremonies. Available in various sizes with skirting, steps, and safety railings. We also provide runways for fashion shows and product launches.",
-    highlights: ["Custom sizes", "Safety railings included", "Runway options available"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop",
+    description: "Custom stage and platform setups with skirting, steps, and safety railings for any event.",
+    highlights: ["Custom sizes", "Safety railings", "Runway options"],
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
     category: "Stage & Platform",
   },
   {
     id: "catering-equipment",
     title: "Catering Equipment",
-    description: "Complete catering equipment rental including chafing dishes, buffet table setups, drink dispensers, and specialty machines like ice cream makers. Everything you need to serve food and beverages professionally.",
-    highlights: ["Full buffet setups", "Specialty machines", "Serving utensils included"],
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=600&fit=crop",
+    description: "Chafing dishes, buffet setups, drink dispensers, and specialty machines for professional catering.",
+    highlights: ["Full buffet setups", "Specialty machines", "Utensils included"],
+    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=600&h=400&fit=crop",
     category: "Catering Equipment",
   },
   {
     id: "photo-booth",
     title: "Photo Booth",
-    description: "Add fun to your event with our instant print photo booths and trending 360 video booths. Guests get instant prints or videos to share on social media. Includes props, custom templates, and a friendly attendant.",
-    highlights: ["Instant prints", "360 video option", "Unlimited sessions"],
-    image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=800&h=600&fit=crop",
+    description: "Instant print photo booths and 360 video booths with props, templates, and attendant.",
+    highlights: ["Instant prints", "360 video", "Unlimited sessions"],
+    image: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=600&h=400&fit=crop",
     category: "Photography",
   },
   {
     id: "emcee-entertainment",
     title: "Emcee & Entertainment",
-    description: "Professional bilingual emcees and live entertainment for your event. Our emcees are experienced in hosting weddings, corporate events, and formal ceremonies. We also provide live bands, DJs, and performers.",
-    highlights: ["Bilingual (BM & English)", "Live bands available", "Experienced hosts"],
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&h=600&fit=crop",
+    description: "Professional bilingual emcees, live bands, DJs, and performers for any occasion.",
+    highlights: ["Bilingual", "Live bands", "Experienced hosts"],
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
     category: "Services",
   },
   {
     id: "setup-teardown",
     title: "Setup & Teardown",
-    description: "Our professional crew handles all the heavy lifting. We arrive early to set up furniture, equipment, and decorations according to your plan, and return after the event to pack everything down efficiently.",
-    highlights: ["Professional crew", "Early setup", "Full cleanup after event"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop",
+    description: "Professional crew for early setup and post-event teardown, handling all furniture and equipment.",
+    highlights: ["Professional crew", "Early setup", "Full cleanup"],
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
     category: "Services",
   },
 ];
@@ -115,86 +115,56 @@ export default function ServicesPage() {
           <p className="text-sm text-gray mb-10">Everything you need for a successful event, all under one roof.</p>
         </FadeIn>
 
-        {/* Quick Nav */}
-        <FadeIn delay={0.1}>
-          <StaggerContainer className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-16">
-            {services.map((s) => (
-              <StaggerItem key={s.id}>
-                <a
-                  href={`#${s.id}`}
-                  className="border border-border rounded-md px-3 py-2.5 text-xs text-center text-gray hover:text-primary hover:border-primary/30 transition-colors block"
-                >
-                  {s.title}
-                </a>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </FadeIn>
-
-        {/* Service Sections */}
-        <div className="space-y-24">
-          {services.map((service, i) => {
-            const isEven = i % 2 === 0;
-            const num = i + 1 < 10 ? `0${i + 1}` : `${i + 1}`;
-            return (
+        {/* Services Grid */}
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <StaggerItem key={service.id}>
               <div
-                key={service.id}
                 id={service.id}
-                className="scroll-mt-8"
+                className="border border-border rounded-lg overflow-hidden hover:border-primary/30 transition-colors flex flex-col h-full scroll-mt-8"
               >
-                <div className={`grid lg:grid-cols-2 gap-10 items-center`}>
-                  {/* Image */}
-                  <SlideIn direction={isEven ? "left" : "right"} className={!isEven ? "lg:order-2" : ""}>
-                    <div className="relative aspect-[4/3] bg-gray-light overflow-hidden rounded-lg">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                    </div>
-                  </SlideIn>
+                <div className="relative aspect-[3/2] bg-gray-light overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-5 flex flex-col flex-1">
+                  <h2 className="font-bold">{service.title}</h2>
+                  <p className="text-sm text-gray mt-2 leading-relaxed">{service.description}</p>
 
-                  {/* Info */}
-                  <SlideIn direction={isEven ? "right" : "left"} className={!isEven ? "lg:order-1" : ""}>
-                    <div>
-                      <span className="text-xs text-gray uppercase tracking-wide">{num}</span>
-                      <h2 className="text-xl font-bold mt-2">{service.title}</h2>
-                      <p className="text-sm text-gray mt-4 leading-relaxed">{service.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {service.highlights.map((h) => (
+                      <span key={h} className="text-xs border border-border rounded-md px-2.5 py-1">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
 
-                      {/* Highlights */}
-                      <div className="flex flex-wrap gap-3 mt-5">
-                        {service.highlights.map((h) => (
-                          <span key={h} className="text-xs border border-border rounded-md px-3 py-1.5">
-                            {h}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-3 mt-6">
-                        <a
-                          href={`https://wa.me/60189023676?text=Hi, I'd like to know more about your ${service.title} service`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
-                        >
-                          Enquire Now
-                        </a>
-                        <Link
-                          href={`/products?category=${encodeURIComponent(service.category)}`}
-                          className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
-                        >
-                          View Products
-                        </Link>
-                      </div>
-                    </div>
-                  </SlideIn>
+                  <div className="flex items-center gap-2 mt-auto pt-5">
+                    <a
+                      href={`https://wa.me/60189023676?text=Hi, I'd like to know more about your ${service.title} service`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+                    >
+                      Enquire Now
+                    </a>
+                    <Link
+                      href={`/products?category=${encodeURIComponent(service.category)}`}
+                      className="px-4 py-2 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
+                    >
+                      Products
+                    </Link>
+                  </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
 
       {/* CTA */}
