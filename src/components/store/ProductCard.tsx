@@ -23,7 +23,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <span className="rounded-sm bg-white/35 px-3 py-1 text-sm font-bold uppercase tracking-[0.25em] text-primary/55 backdrop-blur-[1px]">
+            <span className="rounded-sm bg-white/20 px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.22em] text-primary/35">
               eventsolutions
             </span>
           </div>
