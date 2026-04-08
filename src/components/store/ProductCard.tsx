@@ -22,6 +22,11 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
             className="object-cover"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <span className="rounded-sm bg-white/35 px-3 py-1 text-sm font-bold uppercase tracking-[0.25em] text-primary/55 backdrop-blur-[1px]">
+              eventsolutions
+            </span>
+          </div>
         </div>
       </Link>
       <div className="p-3 flex flex-col flex-1">
