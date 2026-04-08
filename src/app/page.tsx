@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Header from "@/components/store/Header";
 import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import ProductCard from "@/components/store/ProductCard";
+import HeroSlider from "@/components/store/HeroSlider";
 import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
 import { services } from "@/lib/data";
 import { getProducts } from "@/lib/getProducts";
@@ -66,14 +66,8 @@ export default async function Home() {
               </div>
             </FadeIn>
           </div>
-          <FadeIn delay={0.2} className="relative aspect-[4/3] overflow-hidden rounded-lg hidden lg:block">
-            <Image
-              src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop"
-              alt="Event setup by Event Solutions"
-              fill
-              className="object-cover"
-              priority
-            />
+          <FadeIn delay={0.2}>
+            <HeroSlider />
           </FadeIn>
         </div>
       </section>
