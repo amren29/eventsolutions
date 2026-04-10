@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import ProductImage from "@/components/store/ProductImage";
 
 interface ProductCardProps {
   slug: string;
@@ -15,15 +15,13 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
     <div className="border border-border rounded-lg hover:border-primary/30 transition-colors flex flex-col h-full overflow-hidden">
       <Link href={`/products/${slug}`} className="block">
         <div className="aspect-square bg-gray-light relative overflow-hidden shrink-0">
-          <Image
+          <ProductImage
             src={image}
             alt={name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+            className="h-full w-full object-contain p-4"
           />
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <span className="rounded-sm bg-white/20 px-2.5 py-0.5 text-xs font-bold uppercase tracking-[0.22em] text-primary/35">
+          <div className="pointer-events-none absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-center">
+            <span className="max-w-full text-[11px] font-bold uppercase tracking-[0.28em] text-primary/20 sm:text-xs">
               eventsolutions
             </span>
           </div>

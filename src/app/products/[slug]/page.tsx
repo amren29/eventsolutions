@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Header from "@/components/store/Header";
 import Footer from "@/components/store/Footer";
 import ProductCard from "@/components/store/ProductCard";
+import ProductImage from "@/components/store/ProductImage";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import { FadeIn, SlideIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/store/Animate";
 import { getProductBySlug, getProducts } from "@/lib/getProducts";
@@ -50,13 +50,10 @@ export default async function ProductDetail({
           {/* Image */}
           <SlideIn direction="left">
             <div className="relative aspect-square bg-gray-light overflow-hidden rounded-lg">
-              <Image
+              <ProductImage
                 src={product.image}
                 alt={product.name}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-full w-full object-cover"
               />
             </div>
           </SlideIn>
