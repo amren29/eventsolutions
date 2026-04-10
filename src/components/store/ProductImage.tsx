@@ -15,7 +15,7 @@ export default function ProductImage({
 
   if (!src || hasError) {
     return (
-      <div className={`flex items-center justify-center bg-gray-light text-sm text-gray ${className}`}>
+      <div className={`flex items-center justify-center bg-white text-sm text-gray ${className}`}>
         No image available
       </div>
     );

@@ -14,14 +14,14 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
   return (
     <div className="border border-border rounded-lg hover:border-primary/30 transition-colors flex flex-col h-full overflow-hidden">
       <Link href={`/products/${slug}`} className="block">
-        <div className="aspect-square bg-gray-light relative overflow-hidden shrink-0">
+        <div className="aspect-square bg-white relative overflow-hidden shrink-0">
           <ProductImage
             src={image}
             alt={name}
             className="h-full w-full object-contain p-4"
           />
-          <div className="pointer-events-none absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-center">
-            <span className="max-w-full text-[11px] font-bold uppercase tracking-[0.28em] text-primary/20 sm:text-xs">
+          <div className="pointer-events-none absolute inset-x-4 top-1/2 z-10 -translate-y-1/2 flex items-center justify-center text-center">
+            <span className="max-w-full text-[11px] font-bold uppercase tracking-[0.28em] text-primary/30 sm:text-xs">
               eventsolutions
             </span>
           </div>
