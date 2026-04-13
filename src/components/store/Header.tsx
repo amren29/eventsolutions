@@ -7,7 +7,7 @@ export default function Header({ active = "" }: { active?: string }) {
         {/* Logo - Left */}
         <div>
           <Link href="/" className="text-lg font-bold leading-tight hover:opacity-70 transition-opacity">
-            Event Solutions
+            PRO EVENT SOLUTIONS
           </Link>
           <p className="text-xs text-gray">Event Supplies & Management</p>
         </div>

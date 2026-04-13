@@ -23,7 +23,7 @@ export default async function Home() {
           <div>
             <FadeIn>
               <h2 className="text-3xl font-bold leading-tight">
-                All-in-One Event Solutions in Sabah
+                All-in-One Pro Event Solutions in Sabah
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>

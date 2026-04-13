@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Event Solutions | Event Supplies & Management in KK",
+  title: "Pro Event Solutions | Event Supplies & Management in KK",
   description:
-    "Event supplies, equipment rental, and full event management in Kota Kinabalu.",
+    "Pro Event Solutions — event supplies, equipment rental, and full event management in Kota Kinabalu.",
 };
 
 export default function RootLayout({

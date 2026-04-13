@@ -34,7 +34,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-60 bg-white border-r border-border flex flex-col fixed inset-y-0 left-0">
         <div className="p-5 border-b border-border">
-          <p className="font-bold text-sm">Event Solutions</p>
+          <p className="font-bold text-sm">PRO EVENT SOLUTIONS</p>
           <p className="text-xs text-gray">Admin Panel</p>
         </div>
 

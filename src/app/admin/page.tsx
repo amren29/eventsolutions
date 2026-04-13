@@ -42,7 +42,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-1">Dashboard</h1>
-      <p className="text-sm text-gray mb-8">Welcome to Event Solutions admin.</p>
+      <p className="text-sm text-gray mb-8">Welcome to Pro Event Solutions admin.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         <div className="bg-white border border-border rounded-lg p-6">

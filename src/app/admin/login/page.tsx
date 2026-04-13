@@ -36,7 +36,7 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-gray-light flex items-center justify-center p-4">
       <div className="bg-white border border-border rounded-lg p-8 w-full max-w-sm shadow-sm">
         <div className="text-center mb-6">
-          <h1 className="text-lg font-bold">Event Solutions</h1>
+          <h1 className="text-lg font-bold">PRO EVENT SOLUTIONS</h1>
           <p className="text-xs text-gray mt-1">Admin Panel Login</p>
         </div>
 

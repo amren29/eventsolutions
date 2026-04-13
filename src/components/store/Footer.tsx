@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <p className="font-bold">Event Solutions</p>
+            <p className="font-bold">PRO EVENT SOLUTIONS</p>
             <p className="text-sm text-gray mt-2 max-w-md">
               Your one stop event company in Kota Kinabalu. From supplies to full event management, we make your events unforgettable.
             </p>
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border mt-8 pt-6 text-center text-sm text-gray">
-          © {new Date().getFullYear()} Event Solutions. All rights reserved.
+          © {new Date().getFullYear()} Pro Event Solutions. All rights reserved.
         </div>
       </div>
     </footer>

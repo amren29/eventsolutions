@@ -32,7 +32,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
               className="max-w-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-xs"
               style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}
             >
-              eventsolutions
+              proeventsolutions
             </span>
           </div>
         </div>
