@@ -23,6 +23,7 @@ export async function getProducts(): Promise<Product[]> {
       price: p.price,
       image: p.image_url || "",
       includes: p.includes || [],
+      image_fit: p.image_fit || "cover",
     }));
   } catch {
     return staticProducts;
@@ -55,6 +56,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       price: data.price,
       image: data.image_url || "",
       includes: data.includes || [],
+      image_fit: data.image_fit || "cover",
     };
   } catch {
     const staticProduct = staticProducts.find((p) => p.slug === slug);

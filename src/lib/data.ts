@@ -26,6 +26,7 @@ export interface Product {
   price: number;
   image: string;
   includes: string[];
+  image_fit?: "cover" | "contain" | "contain-padded";
 }
 
 export const products: Product[] = [];

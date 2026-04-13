@@ -28,6 +28,7 @@ export default function AdminProducts() {
     description: "",
     image_url: "",
     includes: "",
+    image_fit: "cover",
   });
 
   const fetchProducts = async () => {
@@ -53,7 +54,7 @@ export default function AdminProducts() {
   }, []);
 
   const resetForm = () => {
-    setForm({ name: "", slug: "", subtitle: "", category: "", price: "", description: "", image_url: "", includes: "" });
+    setForm({ name: "", slug: "", subtitle: "", category: "", price: "", description: "", image_url: "", includes: "", image_fit: "cover" });
     setEditingId(null);
     setShowForm(false);
     setImagePreview("");
@@ -103,6 +104,7 @@ export default function AdminProducts() {
       description: form.description,
       image_url: form.image_url,
       includes: form.includes.split("\n").filter((s) => s.trim()),
+      image_fit: form.image_fit,
     };
 
     // Auto-insert category if new
@@ -138,6 +140,7 @@ export default function AdminProducts() {
       description: product.description,
       image_url: product.image_url,
       includes: (product.includes || []).join("\n"),
+      image_fit: product.image_fit || "cover",
     });
     setImagePreview(product.image_url);
     setEditingId(product.id);
@@ -570,6 +573,19 @@ export default function AdminProducts() {
                     className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Image Display</label>
+                <select
+                  value={form.image_fit}
+                  onChange={(e) => setForm({ ...form, image_fit: e.target.value })}
+                  className="w-full px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+                >
+                  <option value="cover">Cover — fill & crop (best for photos)</option>
+                  <option value="contain">Contain — show full image (best for products with white bg)</option>
+                  <option value="contain-padded">Contain with padding — full image with space around</option>
+                </select>
               </div>
 
               <div>

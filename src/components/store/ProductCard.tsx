@@ -8,9 +8,16 @@ interface ProductCardProps {
   category: string;
   price: number;
   image: string;
+  image_fit?: "cover" | "contain" | "contain-padded";
 }
 
-export default function ProductCard({ slug, name, subtitle, category, price, image }: ProductCardProps) {
+const fitClass: Record<string, string> = {
+  cover: "h-full w-full object-cover",
+  contain: "h-full w-full object-contain",
+  "contain-padded": "h-full w-full object-contain p-4",
+};
+
+export default function ProductCard({ slug, name, subtitle, category, price, image, image_fit = "cover" }: ProductCardProps) {
   return (
     <div className="border border-border rounded-lg hover:border-primary/30 transition-colors flex flex-col h-full overflow-hidden">
       <Link href={`/products/${slug}`} className="block">
@@ -18,7 +25,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
           <ProductImage
             src={image}
             alt={name}
-            className="h-full w-full object-cover"
+            className={fitClass[image_fit] ?? fitClass.cover}
           />
           <div className="pointer-events-none absolute inset-x-4 top-1/2 z-10 -translate-y-1/2 flex items-center justify-center text-center">
             <span

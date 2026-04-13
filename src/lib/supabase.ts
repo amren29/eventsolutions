@@ -20,6 +20,7 @@ export interface DBProduct {
   image_url: string;
   includes: string[];
   is_published: boolean;
+  image_fit: "cover" | "contain" | "contain-padded";
   created_at: string;
 }
 

@@ -54,7 +54,11 @@ export default async function ProductDetail({
                 <ProductImage
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-cover"
+                  className={
+                    product.image_fit === "contain" ? "h-full w-full object-contain" :
+                    product.image_fit === "contain-padded" ? "h-full w-full object-contain p-8" :
+                    "h-full w-full object-cover"
+                  }
                 />
               </div>
               <p className="mt-3 text-xs text-red-500">
