@@ -18,6 +18,7 @@ export default function AdminProducts() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const excelInputRef = useRef<HTMLInputElement>(null);
   const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [searchQuery, setSearchQuery] = useState("");
   const [form, setForm] = useState({
     name: "",
     slug: "",
@@ -168,12 +169,24 @@ export default function AdminProducts() {
   };
 
   const toggleSelectAll = () => {
-    if (selected.size === products.length) {
+    if (selected.size === filteredProducts.length) {
       setSelected(new Set());
     } else {
-      setSelected(new Set(products.map((p) => p.id)));
+      setSelected(new Set(filteredProducts.map((p) => p.id)));
     }
   };
+
+  const normalizedSearch = searchQuery.trim().toLowerCase();
+  const filteredProducts = products.filter((product) => {
+    if (!normalizedSearch) return true;
+
+    return [
+      product.name,
+      product.slug,
+      product.category,
+      product.subtitle,
+    ].some((value) => value?.toLowerCase().includes(normalizedSearch));
+  });
 
   // Excel export
   const handleExport = () => {
@@ -311,12 +324,12 @@ export default function AdminProducts() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-xl font-bold">Products</h1>
           <p className="text-sm text-gray mt-1">Manage your product catalog.</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap justify-end">
           {/* Bulk Delete */}
           {selected.size > 0 && (
             <button
@@ -373,6 +386,16 @@ export default function AdminProducts() {
             Add Product
           </button>
         </div>
+      </div>
+
+      <div className="mb-6">
+        <input
+          type="search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by product name, slug, category, or subtitle"
+          className="w-full max-w-md px-3 py-2 border border-border rounded-md text-sm focus:outline-none focus:border-primary"
+        />
       </div>
 
       {/* Modal */}
@@ -572,6 +595,12 @@ export default function AdminProducts() {
             </button>
           </div>
         </div>
+      ) : filteredProducts.length === 0 ? (
+        <div className="bg-white border border-border rounded-lg p-12 text-center">
+          <Package className="w-10 h-10 text-border mx-auto mb-3" />
+          <p className="font-medium mb-1">No matching products</p>
+          <p className="text-sm text-gray">Try a different search keyword.</p>
+        </div>
       ) : (
         <div className="bg-white border border-border rounded-lg overflow-hidden">
           <table className="w-full">
@@ -580,7 +609,7 @@ export default function AdminProducts() {
                 <th className="pl-5 pr-2 py-3">
                   <input
                     type="checkbox"
-                    checked={products.length > 0 && selected.size === products.length}
+                    checked={filteredProducts.length > 0 && selected.size === filteredProducts.length}
                     onChange={toggleSelectAll}
                     className="w-4 h-4 rounded border-border accent-primary cursor-pointer"
                   />
@@ -593,7 +622,7 @@ export default function AdminProducts() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <tr key={product.id} className={`border-b border-border last:border-0 hover:bg-gray-light/50 ${selected.has(product.id) ? "bg-blue-50/50" : ""}`}>
                   <td className="pl-5 pr-2 py-3">
                     <input
