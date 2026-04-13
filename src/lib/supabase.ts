@@ -19,6 +19,7 @@ export interface DBProduct {
   price: number;
   image_url: string;
   includes: string[];
+  is_published: boolean;
   created_at: string;
 }
 

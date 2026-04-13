@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Plus, Pencil, Trash2, X, Package, Loader2, Upload, Download, FileSpreadsheet, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, X, Package, Loader2, Upload, Download, FileSpreadsheet, Image as ImageIcon, Eye, EyeOff } from "lucide-react";
 import { supabase, isSupabaseConfigured, DBProduct } from "@/lib/supabase";
 import * as XLSX from "xlsx";
 
@@ -159,6 +159,11 @@ export default function AdminProducts() {
     fetchProducts();
   };
 
+  const handleTogglePublish = async (product: DBProduct) => {
+    await supabase.from("products").update({ is_published: !product.is_published }).eq("id", product.id);
+    fetchProducts();
+  };
+
   const toggleSelect = (id: number) => {
     setSelected((prev) => {
       const next = new Set(prev);
@@ -257,53 +262,79 @@ export default function AdminProducts() {
     if (!file) return;
 
     setImporting(true);
+    try {
+      const data = await file.arrayBuffer();
+      const wb = XLSX.read(data);
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json<Record<string, string | number>>(ws);
 
-    const data = await file.arrayBuffer();
-    const wb = XLSX.read(data);
-    const ws = wb.Sheets[wb.SheetNames[0]];
-    const rows = XLSX.utils.sheet_to_json<Record<string, string | number>>(ws);
+      const parsedProducts = rows.map((row) => ({
+        name: String(row["Name"] || "").trim(),
+        slug: String(row["Slug"] || "").trim() || generateSlug(String(row["Name"] || "")),
+        category: String(row["Category"] || "").trim(),
+        price: parseFloat(String(row["Price"] || "0")),
+        subtitle: String(row["Subtitle"] || "").trim(),
+        description: String(row["Description"] || "").trim(),
+        image_url: String(row["Image URL"] || "").trim(),
+        includes: String(row["Includes"] || "").split(";").map((s) => s.trim()).filter(Boolean),
+      })).filter((p) => p.name && p.slug);
 
-    const productsToInsert = rows.map((row) => ({
-      name: String(row["Name"] || ""),
-      slug: String(row["Slug"] || "") || generateSlug(String(row["Name"] || "")),
-      category: String(row["Category"] || ""),
-      price: parseFloat(String(row["Price"] || "0")),
-      subtitle: String(row["Subtitle"] || ""),
-      description: String(row["Description"] || ""),
-      image_url: String(row["Image URL"] || ""),
-      includes: String(row["Includes"] || "").split(";").map((s) => s.trim()).filter(Boolean),
-    })).filter((p) => p.name);
-
-    if (productsToInsert.length === 0) {
-      alert("No valid products found in file.");
-      setImporting(false);
-      return;
-    }
-
-    // Auto-insert categories
-    const newCategories = [...new Set(productsToInsert.map((p) => p.category).filter(Boolean))];
-    if (newCategories.length > 0) {
-      const { data: existingCats } = await supabase.from("categories").select("name");
-      const existingNames = new Set((existingCats || []).map((c) => c.name));
-      const catsToInsert = newCategories
-        .filter((name) => !existingNames.has(name))
-        .map((name) => ({ name, description: "" }));
-      if (catsToInsert.length > 0) {
-        await supabase.from("categories").insert(catsToInsert);
+      if (parsedProducts.length === 0) {
+        alert("No valid products found in file.");
+        return;
       }
+
+      // Remove duplicates inside the Excel file itself. First occurrence wins.
+      const seenSlugs = new Set<string>();
+      const uniqueProducts = parsedProducts.filter((product) => {
+        if (seenSlugs.has(product.slug)) return false;
+        seenSlugs.add(product.slug);
+        return true;
+      });
+
+      const { data: existingProducts, error: existingProductsError } = await supabase
+        .from("products")
+        .select("slug");
+
+      if (existingProductsError) {
+        alert("Import failed: " + existingProductsError.message);
+        return;
+      }
+
+      const existingSlugs = new Set((existingProducts || []).map((product) => product.slug));
+      const productsToInsert = uniqueProducts.filter((product) => !existingSlugs.has(product.slug));
+      const skippedCount = parsedProducts.length - productsToInsert.length;
+
+      if (productsToInsert.length === 0) {
+        alert(`No new products were imported. Skipped ${skippedCount} existing or duplicate product${skippedCount === 1 ? "" : "s"}.`);
+        return;
+      }
+
+      // Auto-insert categories for brand-new products only.
+      const newCategories = [...new Set(productsToInsert.map((p) => p.category).filter(Boolean))];
+      if (newCategories.length > 0) {
+        const { data: existingCats } = await supabase.from("categories").select("name");
+        const existingNames = new Set((existingCats || []).map((c) => c.name));
+        const catsToInsert = newCategories
+          .filter((name) => !existingNames.has(name))
+          .map((name) => ({ name, description: "" }));
+        if (catsToInsert.length > 0) {
+          await supabase.from("categories").insert(catsToInsert);
+        }
+      }
+
+      const { error: insertError } = await supabase.from("products").insert(productsToInsert);
+
+      if (insertError) {
+        alert("Import failed: " + insertError.message);
+      } else {
+        alert(`Imported ${productsToInsert.length} new product${productsToInsert.length === 1 ? "" : "s"}. Skipped ${skippedCount} existing or duplicate product${skippedCount === 1 ? "" : "s"}.`);
+        fetchProducts();
+      }
+    } finally {
+      setImporting(false);
+      if (excelInputRef.current) excelInputRef.current.value = "";
     }
-
-    const { error: insertError } = await supabase.from("products").insert(productsToInsert);
-
-    if (insertError) {
-      alert("Import failed: " + insertError.message);
-    } else {
-      alert(`Imported ${productsToInsert.length} products.`);
-      fetchProducts();
-    }
-
-    setImporting(false);
-    if (excelInputRef.current) excelInputRef.current.value = "";
   };
 
   if (loading) {
@@ -618,6 +649,7 @@ export default function AdminProducts() {
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Product</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Category</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Price</th>
+                <th className="px-5 py-3 text-xs font-semibold text-gray uppercase">Status</th>
                 <th className="px-5 py-3 text-xs font-semibold text-gray uppercase text-right">Actions</th>
               </tr>
             </thead>
@@ -647,6 +679,22 @@ export default function AdminProducts() {
                   </td>
                   <td className="px-5 py-3 text-sm text-gray">{product.category}</td>
                   <td className="px-5 py-3 text-sm font-medium">RM {product.price}</td>
+                  <td className="px-5 py-3">
+                    <button
+                      onClick={() => handleTogglePublish(product)}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+                        product.is_published
+                          ? "bg-green-100 text-green-700 hover:bg-green-200"
+                          : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                      }`}
+                    >
+                      {product.is_published ? (
+                        <><Eye className="w-3 h-3" /> Published</>
+                      ) : (
+                        <><EyeOff className="w-3 h-3" /> Hidden</>
+                      )}
+                    </button>
+                  </td>
                   <td className="px-5 py-3">
                     <div className="flex items-center justify-end gap-1">
                       <button onClick={() => handleEdit(product)} className="p-1.5 hover:bg-gray-light">
