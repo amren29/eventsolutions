@@ -11,7 +11,7 @@ const services = [
     title: "Event Supplies",
     description: "Full range of event supplies including tablecloths, cutlery, glassware, and essentials.",
     highlights: ["500+ items", "Same day delivery", "Cleaned & inspected"],
-    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=400&fit=crop",
     category: "Tables & Chairs",
   },
   {
@@ -19,7 +19,7 @@ const services = [
     title: "Equipment Rental",
     description: "Professional event equipment from generators and cooling fans to projectors and screens.",
     highlights: ["Wide range", "Technical support", "Flexible rental"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
     category: "Audio & Sound",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     title: "Event Decoration",
     description: "Beautiful setups including flower arrangements, backdrops, draping, and themed decorations.",
     highlights: ["Custom themes", "Fresh flowers", "Full transformation"],
-    image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=400&fit=crop",
     category: "Decoration",
   },
   {
@@ -35,7 +35,7 @@ const services = [
     title: "Sound & Lighting",
     description: "Professional sound systems and lighting for events of all sizes, with on-site technician.",
     highlights: ["Up to 1000 pax", "DMX control", "Technician included"],
-    image: "https://images.unsplash.com/photo-1504509546545-e000b4a62425?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop",
     category: "Lighting",
   },
   {
@@ -43,7 +43,7 @@ const services = [
     title: "Full Event Management",
     description: "End-to-end planning and execution including vendor coordination, logistics, and day-of management.",
     highlights: ["End to end", "Dedicated manager", "200+ events"],
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop",
     category: "Services",
   },
   {
@@ -51,7 +51,7 @@ const services = [
     title: "Tent & Canopy",
     description: "Wide selection of tents and canopies from small 10x10 to large marquees with setup crew.",
     highlights: ["10x10 to 40x40", "Waterproof", "Setup included"],
-    image: "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1529543544282-ea57407bc2e3?w=600&h=400&fit=crop",
     category: "Tents & Canopy",
   },
   {
@@ -59,7 +59,7 @@ const services = [
     title: "Table & Chair Rental",
     description: "Round tables, banquet tables, cocktail tables, Tiffany chairs, and more delivered to your venue.",
     highlights: ["Multiple styles", "Delivered & arranged", "Bulk pricing"],
-    image: "https://images.unsplash.com/photo-1555244162-803834f70033?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=400&fit=crop",
     category: "Tables & Chairs",
   },
   {
@@ -67,7 +67,7 @@ const services = [
     title: "Stage Setup",
     description: "Custom stage and platform setups with skirting, steps, and safety railings for any event.",
     highlights: ["Custom sizes", "Safety railings", "Runway options"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=400&fit=crop",
     category: "Stage & Platform",
   },
   {
@@ -91,7 +91,7 @@ const services = [
     title: "Emcee & Entertainment",
     description: "Professional bilingual emcees, live bands, DJs, and performers for any occasion.",
     highlights: ["Bilingual", "Live bands", "Experienced hosts"],
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop",
     category: "Services",
   },
   {
@@ -99,7 +99,7 @@ const services = [
     title: "Setup & Teardown",
     description: "Professional crew for early setup and post-event teardown, handling all furniture and equipment.",
     highlights: ["Professional crew", "Early setup", "Full cleanup"],
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop",
     category: "Services",
   },
 ];
