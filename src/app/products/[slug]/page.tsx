@@ -50,11 +50,11 @@ export default async function ProductDetail({
           {/* Image */}
           <SlideIn direction="left">
             <div>
-              <div className="relative aspect-square bg-gray-light overflow-hidden rounded-lg">
+              <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
                 <ProductImage
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain p-6"
                 />
               </div>
               <p className="mt-3 text-xs text-red-500">
