@@ -54,7 +54,7 @@ export default async function ProductDetail({
                 <ProductImage
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-contain p-6"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <p className="mt-3 text-xs text-red-500">

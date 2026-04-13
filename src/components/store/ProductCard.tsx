@@ -18,12 +18,12 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
           <ProductImage
             src={image}
             alt={name}
-            className="h-full w-full object-contain p-4"
+            className="h-full w-full object-cover"
           />
           <div className="pointer-events-none absolute inset-x-4 top-1/2 z-10 -translate-y-1/2 flex items-center justify-center text-center">
             <span
-              className="max-w-full rounded-sm bg-white/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/45 sm:text-xs"
-              style={{ textShadow: "0 1px 2px rgba(255, 255, 255, 0.45)" }}
+              className="max-w-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-xs"
+              style={{ textShadow: "0 1px 3px rgba(0,0,0,0.5)" }}
             >
               eventsolutions
             </span>
