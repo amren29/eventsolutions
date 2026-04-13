@@ -49,12 +49,17 @@ export default async function ProductDetail({
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Image */}
           <SlideIn direction="left">
-            <div className="relative aspect-square bg-gray-light overflow-hidden rounded-lg">
-              <ProductImage
-                src={product.image}
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
+            <div>
+              <div className="relative aspect-square bg-gray-light overflow-hidden rounded-lg">
+                <ProductImage
+                  src={product.image}
+                  alt={product.name}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <p className="mt-3 text-xs text-red-500">
+                Image shown is for reference only. Final setup may vary based on availability and event requirements.
+              </p>
             </div>
           </SlideIn>
 
@@ -67,18 +72,14 @@ export default async function ProductDetail({
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="text-3xl font-bold mt-6">RM {product.price}</p>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="mt-8">
+              <div className="mt-6">
                 <p className="text-sm leading-relaxed text-gray">{product.description}</p>
               </div>
             </FadeIn>
 
             {/* What's Included */}
             {product.includes && product.includes.length > 0 && (
-              <FadeIn delay={0.4}>
+              <FadeIn delay={0.3}>
                 <div className="mt-8">
                   <h3 className="text-sm font-semibold uppercase tracking-wide mb-4">What&apos;s Included</h3>
                   <ul className="space-y-2">
@@ -94,7 +95,7 @@ export default async function ProductDetail({
             )}
 
             {/* CTA */}
-            <FadeIn delay={0.5}>
+            <FadeIn delay={0.4}>
               <div className="mt-10 flex gap-3">
                 <a
                   href={`https://wa.me/60189023676?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
