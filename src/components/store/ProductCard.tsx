@@ -22,8 +22,8 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
           />
           <div className="pointer-events-none absolute inset-x-4 top-1/2 z-10 -translate-y-1/2 flex items-center justify-center text-center">
             <span
-              className="max-w-full text-xs font-semibold uppercase tracking-[0.32em] text-primary/45 sm:text-sm"
-              style={{ textShadow: "0 1px 3px rgba(255, 255, 255, 0.7)" }}
+              className="max-w-full rounded-sm bg-white/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-primary/45 sm:text-xs"
+              style={{ textShadow: "0 1px 2px rgba(255, 255, 255, 0.45)" }}
             >
               eventsolutions
             </span>
