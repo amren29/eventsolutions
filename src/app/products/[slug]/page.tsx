@@ -105,7 +105,7 @@ export default async function ProductDetail({
                   href={`https://wa.me/60183570998?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center px-6 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+                  className="flex-1 flex items-center justify-center px-6 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
                 >
                   Ask for Quote via WhatsApp
                 </a>

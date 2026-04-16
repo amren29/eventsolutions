@@ -19,7 +19,7 @@ export default function WhatsAppButton() {
       {showTop && (
         <button
           onClick={scrollToTop}
-          className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-md hover:bg-black transition-colors"
+          className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-md hover:bg-primary/90 transition-colors"
         >
           <ChevronUp className="w-5 h-5 text-white" />
         </button>
