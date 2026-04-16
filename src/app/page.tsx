@@ -53,7 +53,7 @@ export default async function Home() {
                   href="https://wa.me/60183570998?text=Hi, I'd like to inquire about your event services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+                  className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Get a Quote
                 </a>
@@ -110,7 +110,7 @@ export default async function Home() {
           <FadeInView className="mt-8 text-center">
             <a
               href="/products"
-              className="inline-block px-8 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+              className="inline-block px-8 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
             >
               Show More Products
             </a>
