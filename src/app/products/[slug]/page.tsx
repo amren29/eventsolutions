@@ -34,7 +34,7 @@ export default async function ProductDetail({
       {/* Breadcrumb */}
       <div className="border-b border-border">
         <div className="max-w-[1400px] mx-auto px-4 py-3">
-          <nav className="flex items-center gap-2 text-xs text-gray">
+          <nav className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray">
             <Link href="/" className="hover:text-primary transition-colors">Home</Link>
             <span>/</span>
             <Link href="/products" className="hover:text-primary transition-colors">Products</Link>
@@ -45,8 +45,8 @@ export default async function ProductDetail({
       </div>
 
       {/* Product Detail */}
-      <div className="max-w-[1400px] mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-2 gap-12">
+      <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image */}
           <SlideIn direction="left">
             <div>
@@ -71,7 +71,7 @@ export default async function ProductDetail({
           <div>
             <FadeIn delay={0.1}>
               <span className="text-xs text-gray uppercase tracking-wide">{product.category}</span>
-              <h1 className="text-3xl font-bold mt-2">{product.name}</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold mt-2">{product.name}</h1>
               <p className="text-gray mt-1">{product.subtitle}</p>
             </FadeIn>
 
@@ -100,7 +100,7 @@ export default async function ProductDetail({
 
             {/* CTA */}
             <FadeIn delay={0.4}>
-              <div className="mt-10 flex gap-3">
+              <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <a
                   href={`https://wa.me/60183570998?text=Hi, I'd like to get a quote for ${product.name} (RM${product.price})`}
                   target="_blank"
@@ -111,7 +111,7 @@ export default async function ProductDetail({
                 </a>
                 <Link
                   href="/contact"
-                  className="px-6 py-3 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
+                  className="flex items-center justify-center px-6 py-3 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -130,7 +130,7 @@ export default async function ProductDetail({
                 Related Products
               </h2>
             </FadeInView>
-            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
               {related.map((p) => (
                 <StaggerItem key={p.slug}>
                   <ProductCard {...p} />

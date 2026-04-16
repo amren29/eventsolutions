@@ -19,10 +19,10 @@ export default async function Home() {
 
       {/* Hero */}
       <section className="border-b border-border">
-        <div className="max-w-[1400px] mx-auto px-4 py-16 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-[1400px] mx-auto px-4 py-10 sm:py-16 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <FadeIn>
-              <h2 className="text-3xl font-bold leading-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
                 All-in-One Pro Event Solutions in Sabah
               </h2>
             </FadeIn>
@@ -32,34 +32,34 @@ export default async function Home() {
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <div className="grid grid-cols-3 gap-6 mt-8">
+              <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8">
                 <div>
-                  <p className="text-2xl font-bold">5+</p>
+                  <p className="text-xl sm:text-2xl font-bold">5+</p>
                   <p className="text-xs text-gray mt-1">Years Experience</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">100+</p>
+                  <p className="text-xl sm:text-2xl font-bold">100+</p>
                   <p className="text-xs text-gray mt-1">Projects Completed</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">100+</p>
+                  <p className="text-xl sm:text-2xl font-bold">100+</p>
                   <p className="text-xs text-gray mt-1">Happy Clients</p>
                 </div>
               </div>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <div className="flex gap-3 mt-8">
+              <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <a
                   href="https://wa.me/60183570998?text=Hi, I'd like to inquire about your event services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+                  className="w-full sm:w-auto text-center px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Get a Quote
                 </a>
                 <a
                   href="/contact"
-                  className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
+                  className="w-full sm:w-auto text-center px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                 >
                   Contact Us
                 </a>
@@ -110,7 +110,7 @@ export default async function Home() {
           <FadeInView className="mt-8 text-center">
             <a
               href="/products"
-              className="inline-block px-8 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+              className="inline-block w-full sm:w-auto px-8 py-3 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
             >
               Show More Products
             </a>

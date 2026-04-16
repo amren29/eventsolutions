@@ -20,12 +20,12 @@ export default function Footer() {
               <li><Link href="/contact" className="text-sm text-gray hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xs font-semibold text-gray uppercase tracking-wide mb-3">Contact</p>
-            <ul className="space-y-2 text-sm text-gray">
+            <ul className="space-y-2 text-sm text-gray break-words">
               <li>Kota Kinabalu, Sabah</li>
               <li>+60 18-357 0998</li>
-              <li>sales@eventsolutions.my</li>
+              <li>proeventsolutions88@gmail.com</li>
               <li>Mon to Sat, 9AM to 6PM</li>
             </ul>
           </div>

@@ -9,7 +9,7 @@ export default function ContactPage() {
     <main className="min-h-screen">
       <Header active="contact" />
 
-      <div className="max-w-[1400px] mx-auto px-4 py-12">
+      <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
         <FadeIn>
           <h1 className="text-2xl font-bold mb-1">Contact Us</h1>
           <p className="text-sm text-gray mb-10">Get in touch for inquiries, bookings, or quotes.</p>
@@ -22,7 +22,7 @@ export default function ContactPage() {
               {[
                 { icon: MapPin, title: "Location", detail: "Kota Kinabalu, Sabah, Malaysia" },
                 { icon: Phone, title: "Phone", detail: "+60 18-357 0998" },
-                { icon: Mail, title: "Email", detail: "sales@eventsolutions.my" },
+                { icon: Mail, title: "Email", detail: "proeventsolutions88@gmail.com" },
                 { icon: Clock, title: "Working Hours", detail: "Mon to Sat, 9AM to 6PM" },
               ].map((item) => (
                 <div key={item.title} className="flex items-start gap-4 border border-border rounded-lg p-5">
@@ -38,7 +38,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <SlideIn direction="right" className="lg:col-span-2">
-            <div className="border border-border rounded-lg p-8">
+            <div className="border border-border rounded-lg p-5 sm:p-8">
               <h2 className="font-semibold mb-6">Send us a message</h2>
               <form className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="px-8 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+                  className="w-full sm:w-auto px-8 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
                 >
                   Send Message
                 </button>

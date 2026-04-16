@@ -24,7 +24,7 @@ export default function ProductsGrid({
   });
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-8 flex gap-8">
+    <div className="max-w-[1400px] mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
       {/* Sidebar */}
       <aside className="w-48 shrink-0 hidden md:block">
         <div className="sticky top-8">
@@ -52,8 +52,8 @@ export default function ProductsGrid({
 
       {/* Products */}
       <div className="flex-1">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="relative flex-1 max-w-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+          <div className="relative flex-1 w-full sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray pointer-events-none" />
             <input
               type="search"
@@ -71,7 +71,7 @@ export default function ProductsGrid({
           >
             {active === "All" ? "All Products" : active}
           </motion.h2>
-          <p className="text-xs text-gray ml-auto">{filtered.length} products</p>
+          <p className="text-xs text-gray sm:ml-auto">{filtered.length} products</p>
         </div>
 
         {/* Mobile Filter */}

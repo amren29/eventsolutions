@@ -109,7 +109,7 @@ export default function ServicesPage() {
     <main className="min-h-screen">
       <Header active="services" />
 
-      <div className="max-w-[1400px] mx-auto px-4 py-12">
+      <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
         <FadeIn>
           <h1 className="text-2xl font-bold mb-1">Our Services</h1>
           <p className="text-sm text-gray mb-10">Everything you need for a successful event, all under one roof.</p>
@@ -144,7 +144,7 @@ export default function ServicesPage() {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-2 mt-auto pt-5">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-auto pt-5">
                     <a
                       href={`https://wa.me/60183570998?text=Hi, I'd like to know more about your ${service.title} service`}
                       target="_blank"
@@ -155,7 +155,7 @@ export default function ServicesPage() {
                     </a>
                     <Link
                       href={`/products?category=${encodeURIComponent(service.category)}`}
-                      className="px-4 py-2 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
+                      className="text-center px-4 py-2 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
                     >
                       Products
                     </Link>
@@ -175,18 +175,18 @@ export default function ServicesPage() {
             <p className="text-sm text-gray mt-2 max-w-md mx-auto">
               Tell us about your event and we will recommend the best services and packages for you.
             </p>
-            <div className="flex justify-center gap-3 mt-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
               <a
                 href="https://wa.me/60183570998?text=Hi, I need help planning my event. Can you recommend services?"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-black transition-colors"
               >
                 Chat on WhatsApp
               </a>
               <Link
                 href="/contact"
-                className="px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
+                className="w-full sm:w-auto text-center px-6 py-2.5 border border-border text-sm font-medium rounded-md hover:border-primary transition-colors"
               >
                 Contact Us
               </Link>

@@ -35,7 +35,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-lg hidden lg:block">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
       {slides.map((slide, index) => (
         <div
           key={slide}
@@ -55,7 +55,7 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      <div className="absolute inset-x-0 bottom-4 flex items-center justify-between px-4">
+      <div className="absolute inset-x-0 bottom-3 flex items-center justify-between px-3 sm:bottom-4 sm:px-4">
         <div className="flex items-center gap-2 rounded-full bg-white/85 px-3 py-2 backdrop-blur">
           {slides.map((slide, index) => (
             <button
@@ -70,7 +70,7 @@ export default function HeroSlider() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-2">
           <button
             type="button"
             onClick={goToPrevious}
