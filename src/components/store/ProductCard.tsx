@@ -48,7 +48,7 @@ export default function ProductCard({ slug, name, subtitle, category, price, ima
             href={`https://wa.me/60183570998?text=Hi, I'd like to get a quote for ${name} (RM${price})`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center px-3 py-2 bg-primary text-white text-xs font-medium rounded-md hover:bg-primary/90 transition-colors"
+            className="w-full flex items-center justify-center px-3 py-2 bg-accent text-white text-xs font-medium rounded-md hover:bg-accent/90 transition-colors"
           >
             Ask for Quote
           </a>

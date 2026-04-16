@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="px-8 py-2.5 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+                  className="px-8 py-2.5 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent/90 transition-colors"
                 >
                   Send Message
                 </button>

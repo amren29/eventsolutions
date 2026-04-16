@@ -414,7 +414,7 @@ export default function AdminProducts() {
           {/* Add Product */}
           <button
             onClick={() => setShowForm(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent/90 transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Product
@@ -609,7 +609,7 @@ export default function AdminProducts() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="flex-1 px-4 py-2 bg-accent text-white text-sm font-medium rounded-md hover:bg-accent/90 transition-colors disabled:opacity-50"
                 >
                   {saving ? "Saving..." : editingId ? "Update" : "Add"}
                 </button>
@@ -628,7 +628,7 @@ export default function AdminProducts() {
           <div className="flex justify-center gap-3">
             <button
               onClick={() => setShowForm(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-md"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-md"
             >
               <Plus className="w-4 h-4" />
               Add Product

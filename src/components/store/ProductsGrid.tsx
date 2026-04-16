@@ -38,7 +38,7 @@ export default function ProductsGrid({
                   onClick={() => setActive(cat)}
                   className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                     cat === active
-                      ? "bg-primary text-white font-medium"
+                      ? "bg-accent text-white font-medium"
                       : "text-gray hover:text-primary hover:bg-gray-light"
                   }`}
                 >
@@ -82,7 +82,7 @@ export default function ProductsGrid({
               onClick={() => setActive(cat)}
               className={`px-4 py-2 text-xs font-medium whitespace-nowrap border rounded-md transition-colors ${
                 cat === active
-                  ? "bg-primary text-white border-primary"
+                  ? "bg-accent text-white border-accent"
                   : "border-border text-gray hover:border-primary/30"
               }`}
             >
