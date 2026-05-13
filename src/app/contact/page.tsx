@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import Script from "next/script";
 import Header from "@/components/store/Header";
 import Footer from "@/components/store/Footer";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
@@ -7,6 +8,15 @@ import { FadeIn, SlideIn } from "@/components/store/Animate";
 export default function ContactPage() {
   return (
     <main className="min-h-screen">
+      <Script id="google-ads-lead-conversion" strategy="afterInteractive">
+        {`
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18158199722/bpRPCKfp-KscEKrHwNJD',
+            'value': 1.0,
+            'currency': 'MYR'
+          });
+        `}
+      </Script>
       <Header active="contact" />
 
       <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
