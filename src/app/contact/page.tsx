@@ -86,9 +86,9 @@ export default function ContactPage() {
                       <option>Roadshow</option>
                       <option>Corporate Event</option>
                       <option>Conference / Seminar</option>
+                      <option>Product Launch</option>
                       <option>Wedding</option>
                       <option>Birthday Party</option>
-                      <option>Product Launch</option>
                       <option>Other</option>
                     </select>
                   </div>
