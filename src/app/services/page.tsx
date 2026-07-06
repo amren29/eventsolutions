@@ -7,20 +7,20 @@ import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/
 
 const services = [
   {
-    id: "event-supplies",
-    title: "Event Supplies",
-    description: "Full range of event supplies including tablecloths, cutlery, glassware, and essentials.",
-    highlights: ["500+ items", "Same day delivery", "Cleaned & inspected"],
-    image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=400&fit=crop",
-    category: "Tables & Chairs",
+    id: "exhibition-booth-design",
+    title: "Exhibition Booth Design",
+    description: "Custom exhibition booths and display stands tailored to your brand — from concept to full build for trade shows, expos, and roadshows.",
+    highlights: ["Custom branding", "Modular systems", "Full installation"],
+    image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
+    category: "Exhibition",
   },
   {
-    id: "equipment-rental",
-    title: "Equipment Rental",
-    description: "Professional event equipment from generators and cooling fans to projectors and screens.",
-    highlights: ["Wide range", "Technical support", "Flexible rental"],
+    id: "trade-show-setup",
+    title: "Trade Show Setup",
+    description: "End-to-end trade show and expo management including floor planning, logistics, booth construction, and on-site support.",
+    highlights: ["Floor planning", "On-site crew", "Multi-booth capable"],
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
-    category: "Audio & Sound",
+    category: "Exhibition",
   },
   {
     id: "event-decoration",
@@ -111,8 +111,8 @@ export default function ServicesPage() {
 
       <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
         <FadeIn>
-          <h1 className="text-2xl font-bold mb-1">Our Services</h1>
-          <p className="text-sm text-gray mb-10">Everything you need for a successful event, all under one roof.</p>
+          <h1 className="text-2xl font-bold mb-1">Event & Exhibition Services</h1>
+          <p className="text-sm text-gray mb-10">From exhibition booths to full event management — everything under one roof.</p>
         </FadeIn>
 
         {/* Services Grid */}
@@ -171,9 +171,9 @@ export default function ServicesPage() {
       <FadeInView>
         <section className="border-t border-border">
           <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
-            <h2 className="text-xl font-bold">Not sure what you need?</h2>
+            <h2 className="text-xl font-bold">Planning an event or exhibition?</h2>
             <p className="text-sm text-gray mt-2 max-w-md mx-auto">
-              Tell us about your event and we will recommend the best services and packages for you.
+              Tell us about your project and we will recommend the best services and packages for you.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
               <a

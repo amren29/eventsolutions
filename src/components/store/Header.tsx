@@ -9,7 +9,7 @@ export default function Header({ active = "" }: { active?: string }) {
             <Link href="/" className="block text-base sm:text-lg font-bold leading-tight hover:opacity-70 transition-opacity break-words">
             PRO EVENT SOLUTIONS
             </Link>
-            <p className="text-xs text-gray">Event Supplies & Management</p>
+            <p className="text-xs text-gray">Event & Exhibition Specialist</p>
           </div>
 
           <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:justify-end lg:justify-center">

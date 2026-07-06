@@ -3,8 +3,8 @@ export const categories = [
 ];
 
 export const services = [
-  "Event Supplies",
-  "Equipment Rental",
+  "Exhibition Booth Design",
+  "Trade Show Setup",
   "Event Decoration",
   "Sound & Lighting",
   "Full Event Management",

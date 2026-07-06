@@ -3,9 +3,9 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pro Event Solutions | Event Supplies & Management in KK",
+  title: "Pro Event Solutions | Event & Exhibition Specialist in KK",
   description:
-    "Pro Event Solutions — event supplies, equipment rental, and full event management in Kota Kinabalu.",
+    "Pro Event Solutions — your event & exhibition specialist in Kota Kinabalu. From corporate exhibitions to full event management, we handle every detail.",
 };
 
 export default function RootLayout({

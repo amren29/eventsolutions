@@ -22,7 +22,7 @@ export default function ContactPage() {
       <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
         <FadeIn>
           <h1 className="text-2xl font-bold mb-1">Contact Us</h1>
-          <p className="text-sm text-gray mb-10">Get in touch for inquiries, bookings, or quotes.</p>
+          <p className="text-sm text-gray mb-10">Get in touch for event or exhibition inquiries, bookings, or quotes.</p>
         </FadeIn>
 
         <div className="grid lg:grid-cols-3 gap-10">
@@ -82,10 +82,13 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium mb-1">Event Type</label>
                     <select className="w-full px-3 py-2.5 border border-border rounded-md text-sm focus:outline-none focus:border-primary text-gray">
                       <option>Select event type</option>
-                      <option>Wedding</option>
+                      <option>Exhibition / Trade Show</option>
+                      <option>Roadshow</option>
                       <option>Corporate Event</option>
+                      <option>Conference / Seminar</option>
+                      <option>Wedding</option>
                       <option>Birthday Party</option>
-                      <option>Conference</option>
+                      <option>Product Launch</option>
                       <option>Other</option>
                     </select>
                   </div>
