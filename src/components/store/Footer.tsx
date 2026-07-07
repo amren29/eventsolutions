@@ -6,9 +6,9 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <p className="font-bold">PRO EVENT & EXHIBITION</p>
+            <p className="font-bold">PRO EVENT SOLUTIONS</p>
             <p className="text-sm text-gray mt-2 max-w-md">
-              A professional event and exhibition company dedicated to creating exceptional experiences. From exhibition booth design to full event production — we deliver with precision and creativity.
+              Your event & exhibition specialist in Kota Kinabalu. From corporate exhibitions to full event management, we bring your vision to life.
             </p>
           </div>
           <div>
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border mt-8 pt-6 text-center text-sm text-gray">
-          © {new Date().getFullYear()} Pro Event & Exhibition. All rights reserved.
+          © {new Date().getFullYear()} Pro Event Solutions. All rights reserved.
         </div>
       </div>
     </footer>

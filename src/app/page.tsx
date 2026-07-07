@@ -23,12 +23,12 @@ export default async function Home() {
           <div>
             <FadeIn>
               <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
-                Your Professional Event & Exhibition Partner in Sabah
+                Sabah&apos;s Premier Event & Exhibition Specialist
               </h2>
             </FadeIn>
             <FadeIn delay={0.1}>
               <p className="text-gray mt-4 leading-relaxed">
-                Pro Event &amp; Exhibition is dedicated to creating exceptional experiences that inspire, engage, and deliver results. We specialise in the planning, design, production, and management of exhibitions, trade shows, corporate events, conferences, product launches, and brand activations — from concept to completion, with precision and creativity.
+                Based in Kota Kinabalu &amp; Tuaran, Sabah, we are your trusted partner for events and exhibitions of every scale. From custom exhibition booth design and trade show setups to weddings, corporate functions, and large-scale celebrations — we deliver end-to-end solutions covering staging, lighting, sound, decoration, and full project management. Proudly serving clients across Sabah with precision and care.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>

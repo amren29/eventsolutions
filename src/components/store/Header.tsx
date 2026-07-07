@@ -7,7 +7,7 @@ export default function Header({ active = "" }: { active?: string }) {
         <div className="flex flex-col gap-4 sm:grid sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center lg:grid-cols-3">
           <div className="min-w-0">
             <Link href="/" className="block text-base sm:text-lg font-bold leading-tight hover:opacity-70 transition-opacity break-words">
-            PRO EVENT & EXHIBITION
+            PRO EVENT SOLUTIONS
             </Link>
             <p className="text-xs text-gray">Event & Exhibition Specialist</p>
           </div>

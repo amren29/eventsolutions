@@ -3,14 +3,13 @@ export const categories = [
 ];
 
 export const services = [
+  "Event Management",
+  "Event Production",
   "Exhibition Booth Design & Build",
-  "Trade Shows & Expositions",
-  "Corporate Events & Conferences",
-  "Product Launches & Brand Activations",
-  "Event Planning & Project Management",
-  "Stage, Lighting & Audio-Visual Production",
-  "Event Logistics & Installation",
-  "Custom Displays & Event Rentals",
+  "Audio, Visual & Lighting",
+  "Stage Setup",
+  "Event Equipment Rental",
+  "Event Decoration",
 ];
 
 export interface Product {
