@@ -7,22 +7,6 @@ import { FadeIn, FadeInView, StaggerContainer, StaggerItem } from "@/components/
 
 const services = [
   {
-    id: "event-management",
-    title: "Event Management",
-    description: "Full end-to-end event management from concept to execution — vendor coordination, logistics, timeline, and on-the-day management for corporate events, launches, galas, and more.",
-    highlights: ["End-to-end planning", "Dedicated event manager", "200+ events delivered"],
-    image: "/images/Event%20Management.jpg",
-    category: "Services",
-  },
-  {
-    id: "event-production",
-    title: "Event Production",
-    description: "Professional event production including stage design, LED screens, audio-visual systems, lighting rigs, and technical crew to bring your event to life.",
-    highlights: ["Stage & set design", "LED screens & AV", "Full technical crew"],
-    image: "/images/Event%20Production.webp",
-    category: "Stage & Platform",
-  },
-  {
     id: "exhibition-booth-design-build",
     title: "Exhibition Booth Design & Build",
     description: "Custom exhibition booths and display stands tailored to your brand — from concept design to full fabrication and installation for trade shows, expos, and roadshows.",
@@ -31,36 +15,60 @@ const services = [
     category: "Exhibition",
   },
   {
-    id: "audio-visual-lighting",
-    title: "Audio, Visual & Lighting",
-    description: "Professional audio systems, visual displays, and lighting for events of all sizes, with on-site technician.",
-    highlights: ["Up to 1000 pax", "LED screens & AV", "Technician included"],
-    image: "/images/Audio%2C%20Visual%20%26%20Lighting.webp",
-    category: "Lighting",
+    id: "trade-shows-expositions",
+    title: "Trade Shows & Expositions",
+    description: "End-to-end management of trade show participation and exposition setups — from floor planning and booth construction to logistics and on-site coordination.",
+    highlights: ["Floor planning", "Multi-booth capable", "On-site crew"],
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+    category: "Exhibition",
   },
   {
-    id: "stage-setup",
-    title: "Stage Setup",
-    description: "Custom stage and platform setups with skirting, steps, and safety railings for any event.",
-    highlights: ["Custom sizes", "Safety railings", "Runway options"],
-    image: "/images/Stage%20Setup.jpg",
+    id: "corporate-events-conferences",
+    title: "Corporate Events & Conferences",
+    description: "Professional planning and execution of corporate events, conferences, seminars, gala dinners, and annual dinners — tailored to your brand and objectives.",
+    highlights: ["Full event planning", "AV & staging", "Up to 1000+ pax"],
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop",
+    category: "Services",
+  },
+  {
+    id: "product-launches-brand-activations",
+    title: "Product Launches & Brand Activations",
+    description: "Memorable product launches and brand activation experiences designed to captivate audiences, generate buzz, and strengthen your brand presence.",
+    highlights: ["Creative concepts", "Brand storytelling", "Experiential design"],
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+    category: "Services",
+  },
+  {
+    id: "event-planning-project-management",
+    title: "Event Planning & Project Management",
+    description: "Comprehensive event planning and project management — vendor coordination, timelines, budgeting, logistics, and dedicated on-the-day management from start to finish.",
+    highlights: ["Dedicated manager", "End-to-end planning", "200+ events delivered"],
+    image: "/images/Event%20Management.jpg",
+    category: "Services",
+  },
+  {
+    id: "stage-lighting-av-production",
+    title: "Stage, Lighting & Audio-Visual Production",
+    description: "Professional stage design, lighting rigs, LED screens, sound systems, and full AV production with a technical crew for events of any scale.",
+    highlights: ["Stage & set design", "LED screens & AV", "Full technical crew"],
+    image: "/images/Event%20Production.webp",
     category: "Stage & Platform",
   },
   {
-    id: "event-equipment-rental",
-    title: "Event Equipment Rental",
-    description: "Wide range of event equipment for rent — tables, chairs, generators, cooling fans, projectors, screens, and more delivered to your venue.",
-    highlights: ["Wide range", "Delivered & arranged", "Flexible rental"],
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
-    category: "Tables & Chairs",
+    id: "event-logistics-installation",
+    title: "Event Logistics & Installation",
+    description: "Seamless event logistics including transportation, setup, installation, and teardown — handled by our experienced crew so every detail is in place on time.",
+    highlights: ["Delivery & setup", "On-time execution", "Professional crew"],
+    image: "/images/Stage%20Setup.jpg",
+    category: "Services",
   },
   {
-    id: "event-decoration",
-    title: "Event Decoration",
-    description: "Beautiful setups including flower arrangements, backdrops, draping, and themed decorations.",
-    highlights: ["Custom themes", "Fresh flowers", "Full transformation"],
+    id: "custom-displays-event-rentals",
+    title: "Custom Displays, Exhibition Systems & Event Rentals",
+    description: "Custom display solutions, modular exhibition systems, and a full range of event rental equipment — from furniture and flooring to signage and specialty items.",
+    highlights: ["Custom fabrication", "Modular systems", "Wide rental range"],
     image: "/images/Event%20Decoration.webp",
-    category: "Decoration",
+    category: "Exhibition",
   },
 ];
 
@@ -71,8 +79,8 @@ export default function ServicesPage() {
 
       <div className="max-w-[1400px] mx-auto px-4 py-8 sm:py-12">
         <FadeIn>
-          <h1 className="text-2xl font-bold mb-1">Event & Exhibition Services</h1>
-          <p className="text-sm text-gray mb-10">From exhibition booths to full event management — everything under one roof.</p>
+          <h1 className="text-2xl font-bold mb-1">Our Services</h1>
+          <p className="text-sm text-gray mb-10">From exhibition booth design to full event production — we deliver end-to-end solutions with precision and creativity.</p>
         </FadeIn>
 
         {/* Services Grid */}
